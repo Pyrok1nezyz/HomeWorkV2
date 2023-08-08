@@ -9,11 +9,23 @@ namespace HomeWork
         {
             InitializeComponent();
             groupBox1.Hide();
+
+            var text = File.ReadAllText("Users.json");
+            var list = JsonSerializer.Deserialize<List<User>>(text);
+            userList.AddRange(list);
+
+            var text2 = File.ReadAllText("Comps.json");
+            var list2 = JsonSerializer.Deserialize<List<Comp>>(text2);
+            comps.AddRange(list2);
         }
 
         ~HomeWorkN1()
         {
-            //JsonSerializer.Serialize();
+            var text = JsonSerializer.Serialize(userList);
+            File.WriteAllText("Users.json", text);
+
+            var text2 = JsonSerializer.Serialize(comps);
+            File.WriteAllText("Comps.json", text2);
         }
 
         private void HomeWorkN1_Load(object sender, EventArgs e)
