@@ -12,11 +12,11 @@ namespace HomeWork
 
             var text = File.ReadAllText("Users.json");
             var list = JsonSerializer.Deserialize<List<User>>(text);
-            userList.AddRange(list);
+            if (list != null) userList.AddRange(list);
 
             var text2 = File.ReadAllText("Comps.json");
             var list2 = JsonSerializer.Deserialize<List<Comp>>(text2);
-            comps.AddRange(list2);
+            if (list2 != null) comps.AddRange(list2);
         }
 
         ~HomeWorkN1()
@@ -69,9 +69,9 @@ namespace HomeWork
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var IsLogined = Work.TryLogin(textBox1.Text, textBox2.Text);
+            var IsLogged = Work.TryLogin(textBox1.Text, textBox2.Text);
 
-            if (IsLogined)
+            if (IsLogged)
             {
                 groupBox1.Show();
                 label4.Text = "Logged";
