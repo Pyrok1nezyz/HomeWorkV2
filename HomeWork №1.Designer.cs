@@ -52,11 +52,11 @@ namespace HomeWork
             textBox1 = new TextBox();
             Юзеры = new TabPage();
             dataGridView1 = new DataGridView();
+            User = new DataGridViewTextBoxColumn();
+            Password = new DataGridViewTextBoxColumn();
             Компы = new TabPage();
             tableLayoutPanel2 = new TableLayoutPanel();
             dataGridView2 = new DataGridView();
-            User = new DataGridViewTextBoxColumn();
-            Password = new DataGridViewTextBoxColumn();
             PC = new DataGridViewTextBoxColumn();
             IP = new DataGridViewTextBoxColumn();
             Notation = new DataGridViewTextBoxColumn();
@@ -110,9 +110,10 @@ namespace HomeWork
             label4.ForeColor = Color.YellowGreen;
             label4.Location = new Point(18, 309);
             label4.Name = "label4";
-            label4.Size = new Size(237, 60);
+            label4.Size = new Size(232, 67);
             label4.TabIndex = 13;
             label4.Text = "Ожидание";
+            label4.UseCompatibleTextRendering = true;
             label4.Click += label4_Click;
             // 
             // groupBox1
@@ -132,7 +133,6 @@ namespace HomeWork
             groupBox1.Size = new Size(486, 365);
             groupBox1.TabIndex = 12;
             groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
             groupBox1.Enter += groupBox1_Enter;
             // 
             // button5
@@ -319,6 +319,24 @@ namespace HomeWork
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
+            // User
+            // 
+            User.Frozen = true;
+            User.HeaderText = "User";
+            User.MinimumWidth = 6;
+            User.Name = "User";
+            User.ReadOnly = true;
+            User.Width = 125;
+            // 
+            // Password
+            // 
+            Password.Frozen = true;
+            Password.HeaderText = "Password";
+            Password.MinimumWidth = 6;
+            Password.Name = "Password";
+            Password.ReadOnly = true;
+            Password.Width = 125;
+            // 
             // Компы
             // 
             Компы.Controls.Add(tableLayoutPanel2);
@@ -357,24 +375,6 @@ namespace HomeWork
             dataGridView2.RowTemplate.Height = 29;
             dataGridView2.Size = new Size(754, 370);
             dataGridView2.TabIndex = 0;
-            // 
-            // User
-            // 
-            User.Frozen = true;
-            User.HeaderText = "User";
-            User.MinimumWidth = 6;
-            User.Name = "User";
-            User.ReadOnly = true;
-            User.Width = 125;
-            // 
-            // Password
-            // 
-            Password.Frozen = true;
-            Password.HeaderText = "Password";
-            Password.MinimumWidth = 6;
-            Password.Name = "Password";
-            Password.ReadOnly = true;
-            Password.Width = 125;
             // 
             // PC
             // 
@@ -450,12 +450,12 @@ namespace HomeWork
         private TableLayoutPanel tableLayoutPanel2;
         private Label label4;
         private Button button5;
-        public static DataGridView dataGridView1;
-        public static DataGridView dataGridView2;
         private DataGridViewTextBoxColumn User;
         private DataGridViewTextBoxColumn Password;
         private DataGridViewTextBoxColumn PC;
         private DataGridViewTextBoxColumn IP;
         private DataGridViewTextBoxColumn Notation;
+        public static DataGridView dataGridView1;
+        public static DataGridView dataGridView2;
     }
 }

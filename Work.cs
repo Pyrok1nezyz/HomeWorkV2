@@ -27,20 +27,20 @@ public class Work
 
     public static void Twinkling(Label label)
     {
-        for (int i = 0; i == 5; i++)
-        {
-            label.Show();
-            label.Refresh();
-            Thread.Sleep(1000);
-            label.Hide();
-            label.Refresh();
-            Thread.Sleep(500);
-        }
+        //for (int i = 0; i == 5; i++)
+        //{
+        //    label.Show();
+        //    label.Refresh();
+        //    Thread.Sleep(1000);
+        //    label.Hide();
+        //    label.Refresh();
+        //    Thread.Sleep(500);
+        //}
 
-        label.ForeColor = System.Drawing.Color.YellowGreen;
-        label.Text = "Ожидание";
-        label.Show();
-        label.Refresh();
+        //label.ForeColor = System.Drawing.Color.YellowGreen;
+        //label.Text = "Ожидание";
+        //label.Show();
+        //label.Refresh();
     }
 
     public static bool TryLogin(string name, string password)
