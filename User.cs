@@ -1,8 +1,15 @@
-﻿namespace HomeWork;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HomeWork;
 
 public class User
 {
-    internal string Name { get; set; }
-    internal string Password { get; set; }
+    [Key]
+    public long Id { get; set; }
+
+    public string Name { get; set; }
+    public string Password { get; set; }
+
+    public Computer? Computer { get; set; }
 }
 
