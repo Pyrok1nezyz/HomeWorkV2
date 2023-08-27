@@ -113,7 +113,7 @@ namespace HomeWork
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(984, 404);
             tabControl1.TabIndex = 3;
-            tabControl1.TabIndexChanged += tabControl1_SelectTab;
+            tabControl1.SelectedIndexChanged += tabControl1_SelectTab;
             // 
             // button1
             // 

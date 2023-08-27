@@ -50,7 +50,6 @@ namespace HomeWork
             {
                 comboBox1.Items.Add(VARIABLE.Name);
             }
-
         }
 
         internal static BindingSource pSource = new BindingSource();
@@ -70,13 +69,33 @@ namespace HomeWork
         {
             if (tabControl1.SelectedTab.Name.Contains("Юзер"))
             {
-                редактор.groupBox2.Hide();
-                редактор.groupBox1.Show();
+                if (редактор != null)
+                {
+                    редактор.groupBox2.Hide();
+                    редактор.groupBox1.Show();
+                }
+
+                comboBox1.Items.Clear();
+                Type myType = typeof(User);
+                foreach (var VARIABLE in myType.GetProperties())
+                {
+                    comboBox1.Items.Add(VARIABLE.Name);
+                }
             }
             else
             {
-                редактор.groupBox1.Hide();
-                редактор.groupBox2.Show();
+                if (редактор != null)
+                {
+                    редактор.groupBox1.Hide();
+                    редактор.groupBox2.Show();
+                }
+
+                comboBox1.Items.Clear();
+                Type myType = typeof(Computer);
+                foreach (var VARIABLE in myType.GetProperties())
+                {
+                    comboBox1.Items.Add(VARIABLE.Name);
+                }
             }
         }
 
@@ -167,13 +186,21 @@ namespace HomeWork
             }
             else
             {
-                using (var db = new WorkApp())
+                if (tabControl1.SelectedTab.Text.Contains("Юзеры"))
                 {
-                    db.Users.FromSql($"SELECT * FROM Users ORDER BY {query}").Load();
-                    db.Computers.Load();
-                    Компьютеры.DataSource = db.Computers.Local.ToBindingList();
-                    UsersDataGrid.DataSource = db.Users.Local.ToBindingList();
+                    using (var db = new WorkApp())
+                    {
+                        UsersDataGrid.DataSource = db.Users.OrderBy(e => EF.Property<User>(e, query)).ToArray();
+                    }
                 }
+                else
+                {
+                    using (var db = new WorkApp())
+                    {
+                        Компьютеры.DataSource = db.Computers.OrderBy(e => EF.Property<Computer>(e, query)).ToArray();
+                    }
+                }
+
             }
 
             Компьютеры.Refresh();
