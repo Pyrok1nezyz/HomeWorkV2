@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            button1 = new Button();
+            button2 = new Button();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
             groupBox2 = new GroupBox();
             button3 = new Button();
             button4 = new Button();
@@ -37,35 +42,72 @@
             textBox4 = new TextBox();
             textBox5 = new TextBox();
             textBox6 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.Controls.Add(groupBox2);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(button2);
             groupBox1.Controls.Add(textBox3);
             groupBox1.Controls.Add(textBox2);
             groupBox1.Controls.Add(textBox1);
-            groupBox1.Location = new Point(0, 0);
+            groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(770, 183);
+            groupBox1.Size = new Size(649, 200);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Юзеры";
             groupBox1.Enter += groupBox1_Enter;
             // 
+            // button1
+            // 
+            button1.Location = new Point(262, 59);
+            button1.Name = "button1";
+            button1.Size = new Size(125, 29);
+            button1.TabIndex = 3;
+            button1.Text = "Сохранить";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(262, 94);
+            button2.Name = "button2";
+            button2.Size = new Size(125, 29);
+            button2.TabIndex = 7;
+            button2.Text = "Добавить";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(393, 26);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(125, 27);
+            textBox3.TabIndex = 2;
+            textBox3.TextChanged += textBox3_TextChanged;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(262, 26);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(125, 27);
+            textBox2.TabIndex = 1;
+            textBox2.TextChanged += textBox2_TextChanged;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(131, 26);
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 0;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
             // groupBox2
             // 
-            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(button3);
             groupBox2.Controls.Add(button4);
             groupBox2.Controls.Add(textBox8);
@@ -73,9 +115,9 @@
             groupBox2.Controls.Add(textBox4);
             groupBox2.Controls.Add(textBox5);
             groupBox2.Controls.Add(textBox6);
-            groupBox2.Location = new Point(0, 26);
+            groupBox2.Location = new Point(12, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(0, 0);
+            groupBox2.Size = new Size(761, 167);
             groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
             groupBox2.Text = "Компьютеры";
@@ -140,57 +182,15 @@
             textBox6.TabIndex = 4;
             textBox6.TextChanged += textBox6_TextChanged;
             // 
-            // button1
-            // 
-            button1.Location = new Point(314, 59);
-            button1.Name = "button1";
-            button1.Size = new Size(125, 29);
-            button1.TabIndex = 3;
-            button1.Text = "Сохранить";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(314, 94);
-            button2.Name = "button2";
-            button2.Size = new Size(125, 29);
-            button2.TabIndex = 7;
-            button2.Text = "Добавить";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(445, 26);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 2;
-            textBox3.TextChanged += textBox3_TextChanged;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(314, 26);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 1;
-            textBox2.TextChanged += textBox2_TextChanged;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(183, 26);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 0;
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
             // Редактор
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(782, 195);
+            ClientSize = new Size(813, 321);
+            Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            MaximumSize = new Size(831, 368);
+            MinimumSize = new Size(831, 368);
             Name = "Редактор";
             Text = "Редактирование Таблицы";
             FormClosed += Редактор_FormClosed;

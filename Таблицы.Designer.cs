@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Text.Json;
 using System.Reflection;
+using ClassLibrary_HomeWork;
 
 namespace HomeWork
 {
@@ -153,6 +154,7 @@ namespace HomeWork
             Controls.Add(comboBox1);
             Controls.Add(button1);
             Controls.Add(tabControl1);
+            MinimumSize = new Size(1001, 498);
             Name = "HomeWorkN1";
             RightToLeft = RightToLeft.No;
             Text = "HomeWorkN1";

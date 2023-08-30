@@ -48,7 +48,6 @@
             label4.TabIndex = 22;
             label4.Text = "Ожидание";
             label4.UseCompatibleTextRendering = true;
-            label4.Click += label4_Click;
             // 
             // button1
             // 
@@ -65,7 +64,7 @@
             // 
             // textBox2
             // 
-            textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBox2.Anchor = AnchorStyles.Top;
             textBox2.Location = new Point(384, 218);
             textBox2.Margin = new Padding(3, 4, 3, 4);
             textBox2.Name = "textBox2";
@@ -73,7 +72,6 @@
             textBox2.PlaceholderText = "Password";
             textBox2.Size = new Size(114, 27);
             textBox2.TabIndex = 16;
-            textBox2.TextChanged += textBox2_TextChanged;
             textBox2.KeyDown += textBox2_KeyDown;
             // 
             // label1
@@ -83,24 +81,23 @@
             label1.BackColor = Color.Transparent;
             label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(304, 152);
+            label1.Location = new Point(237, 152);
             label1.MaximumSize = new Size(400, 0);
             label1.Name = "label1";
-            label1.Size = new Size(159, 62);
+            label1.Size = new Size(295, 62);
             label1.TabIndex = 14;
-            label1.Text = "Логин";
+            label1.Text = "Регистрация";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // textBox1
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBox1.Anchor = AnchorStyles.Top;
             textBox1.Location = new Point(263, 218);
             textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Login";
             textBox1.Size = new Size(114, 27);
             textBox1.TabIndex = 15;
-            textBox1.TextChanged += textBox1_TextChanged;
             textBox1.KeyDown += textBox1_KeyDown;
             // 
             // ChangeText
@@ -117,6 +114,9 @@
             // 
             // Авторизация
             // 
+            AccessibleDescription = "Введите логин";
+            AccessibleName = "Тут вводить логин";
+            AllowDrop = true;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
@@ -126,6 +126,8 @@
             Controls.Add(textBox2);
             Controls.Add(label1);
             Controls.Add(textBox1);
+            MinimizeBox = false;
+            MinimumSize = new Size(818, 497);
             Name = "Авторизация";
             Text = "Авторизация";
             Load += Авторизация_Load;

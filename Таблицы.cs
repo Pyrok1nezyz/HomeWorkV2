@@ -1,14 +1,6 @@
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using System.Net;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using ClassLibrary_HomeWork;
 
 namespace HomeWork
 {
@@ -180,8 +172,8 @@ namespace HomeWork
                 {
                     db.Users.Load();
                     db.Computers.Load();
-                    Компьютеры.DataSource = db.Computers.Local.ToBindingList();
-                    UsersDataGrid.DataSource = db.Users.Local.ToBindingList();
+                    Компьютеры.DataSource = db.Computers.Local.ToArray();
+                    UsersDataGrid.DataSource = db.Users.Local.ToArray();
                 }
             }
             else
@@ -191,6 +183,9 @@ namespace HomeWork
                     using (var db = new WorkApp())
                     {
                         UsersDataGrid.DataSource = db.Users.OrderBy(e => EF.Property<User>(e, query)).ToArray();
+                        //UsersDataGrid.DataSource = db.Users.FromSqlRaw($"SELECT * FROM Users ORDER BY {query}").ToArray();
+
+                        db.Users.OrderBy(e => EF.Property<User>(e, query));
                     }
                 }
                 else
@@ -198,6 +193,9 @@ namespace HomeWork
                     using (var db = new WorkApp())
                     {
                         Компьютеры.DataSource = db.Computers.OrderBy(e => EF.Property<Computer>(e, query)).ToArray();
+                        //Компьютеры.DataSource = db.Computers.FromSqlRaw($"SELECT * FROM Computers ORDER BY {query}").ToArray();
+
+                        db.Computers.OrderBy(e => EF.Property<Computer>(e, query));
                     }
                 }
 

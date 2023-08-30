@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClassLibrary_HomeWork;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HomeWork
@@ -20,64 +21,66 @@ namespace HomeWork
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private async void button1_Click(object sender, EventArgs e)
         {
-            if (indexLayout == 0)
+            try
             {
-                var IsLogged = Work.TryLogin(textBox1.Text, textBox2.Text);
+                if (indexLayout == 0)
+                {
+                    var IsLogged = Work.TryLogin(textBox1.Text, textBox2.Text);
 
-                if (IsLogged)
-                {
-                    label4.Text = "Logged";
-                    label4.ForeColor = Color.Green;
-                    Work.Twinkling(label4);
-
-                    var form = new HomeWorkN1();
-                    form.Show();
-                    Hide();
-                }
-                else
-                {
-                    label4.Text = "Login Failed";
-                    label4.ForeColor = Color.Red;
-                    Work.Twinkling(label4);
-                }
-            }
-            else
-            {
-                var IsLogged = Work.TryLogin(textBox1.Text, textBox2.Text);
-                if (!IsLogged)
-                {
-                    using (var db = new HomeWorkN1.WorkApp())
+                    if (IsLogged)
                     {
-                        var user = new User()
-                        {
-                            Name = textBox1.Text,
-                            Password = textBox2.Text,
-                            Computer = db.Computers.FirstOrDefault()
-                        };
+                        label4.Text = "Logged";
+                        label4.ForeColor = Color.Green;
+                        Work.Twinkling(label4);
 
-                        db.AddAsync(user);
-                        db.SaveChangesAsync();
+                        var form = new HomeWorkN1();
+                        form.Show();
+                        Hide();
                     }
-
-                    label4.Text = "Зарегестрирован!";
-                    label4.ForeColor = Color.Green;
-                    Work.Twinkling(label4);
+                    else
+                    {
+                        label4.Text = "Login Failed";
+                        label4.ForeColor = Color.Red;
+                        Work.Twinkling(label4);
+                    }
                 }
                 else
                 {
-                    label4.Text = "Register Failed";
-                    label4.ForeColor = Color.Red;
-                    Work.Twinkling(label4);
+                    var IsLogged = Work.TryLogin(textBox1.Text, textBox2.Text);
+                    if (!IsLogged)
+                    {
+                        using (var db = new HomeWorkN1.WorkApp())
+                        {
+                            var user = new User()
+                            {
+                                Name = textBox1.Text,
+                                Password = textBox2.Text,
+                                Computer = db.Computers.FirstOrDefault()
+                            };
+
+                            db.AddAsync(user);
+                            db.SaveChangesAsync();
+                        }
+
+                        label4.Text = "Зарегестрирован!";
+                        label4.ForeColor = Color.Green;
+                        Work.Twinkling(label4);
+                    }
+                    else
+                    {
+                        label4.Text = "Register Failed";
+                        label4.ForeColor = Color.Red;
+                        Work.Twinkling(label4);
+                    }
                 }
             }
-
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Application.Exit();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -147,11 +150,6 @@ namespace HomeWork
             }
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
@@ -168,9 +166,6 @@ namespace HomeWork
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private int _flagLabel1 = 0;
     }
 }
