@@ -1,4 +1,4 @@
-namespace HomeWork
+namespace HomeWork.MainCOde
 {
     internal static class Program
     {

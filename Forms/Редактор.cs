@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using ClassLibrary_HomeWork;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeWork
@@ -105,7 +106,7 @@ namespace HomeWork
                 if (user != null)
                 {
                     user.Name = textBox2.Text;
-                    user.Computer = db.Computers.FirstOrDefault();
+                    user.Computer = db.Computers.OrderBy(e => e.Id).FirstOrDefault();
                     user.Password = textBox3.Text;
 
                     db.Users.Update(user);
@@ -117,7 +118,7 @@ namespace HomeWork
                     {
                         Id = i,
                         Name = textBox2.Text,
-                        Computer = db.Computers.LastOrDefault(),
+                        Computer = db.Computers.OrderBy(e => e.Id).LastOrDefault(),
                         Password = textBox3.Text,
                     };
 
@@ -180,6 +181,11 @@ namespace HomeWork
         private void Редактор_FormClosed(object sender, FormClosedEventArgs e)
         {
             Таблицы.редактор = null;
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

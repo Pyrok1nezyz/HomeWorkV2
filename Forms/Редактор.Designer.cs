@@ -53,9 +53,9 @@
             groupBox1.Controls.Add(textBox3);
             groupBox1.Controls.Add(textBox2);
             groupBox1.Controls.Add(textBox1);
-            groupBox1.Location = new Point(12, 12);
+            groupBox1.Location = new Point(92, 51);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(649, 200);
+            groupBox1.Size = new Size(642, 163);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Юзеры";
@@ -115,12 +115,13 @@
             groupBox2.Controls.Add(textBox4);
             groupBox2.Controls.Add(textBox5);
             groupBox2.Controls.Add(textBox6);
-            groupBox2.Location = new Point(12, 12);
+            groupBox2.Location = new Point(12, 9);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(761, 167);
+            groupBox2.Size = new Size(801, 300);
             groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
             groupBox2.Text = "Компьютеры";
+            groupBox2.Enter += groupBox2_Enter;
             // 
             // button3
             // 
@@ -203,19 +204,19 @@
         }
 
         #endregion
-        private Button button1;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private TextBox textBox8;
-        private TextBox textBox7;
-        private Button button2;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private Button button3;
-        private Button button4;
         internal GroupBox groupBox1;
         internal GroupBox groupBox2;
+        internal Button button1;
+        internal TextBox textBox3;
+        internal TextBox textBox2;
+        internal TextBox textBox1;
+        internal TextBox textBox8;
+        internal TextBox textBox7;
+        internal Button button2;
+        internal TextBox textBox4;
+        internal TextBox textBox5;
+        internal TextBox textBox6;
+        internal Button button3;
+        internal Button button4;
     }
 }

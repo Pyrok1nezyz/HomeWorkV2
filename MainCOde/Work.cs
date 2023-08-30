@@ -4,6 +4,8 @@ using System.Linq;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using System.Windows.Forms;
+using ClassLibrary_HomeWork;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeWork;
 
@@ -24,8 +26,9 @@ public class Work
     {
         using (var db = new HomeWorkN1.WorkApp())
         {
-            db.Users.Load();
-            var answer = db.Users.Any(e => e.Name.Equals(name) && e.Password.Equals(password));
+            //var query = db.Users.Find(user);
+            //var answer = db.Users.FromSql($"SELECT * FROM Users WHERE Name = {name} AND Password = {password};");
+            var answer = db.Users.Any(e => e.Name == name && e.Password == password);
             return answer;
         }
     }
@@ -34,7 +37,6 @@ public class Work
     {
         using (var db = new HomeWorkN1.WorkApp())
         {
-            db.Users.Load();
             return db.Users.Any(e => e.Name == name);
         }
     }

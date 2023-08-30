@@ -7,6 +7,9 @@ namespace HomeWork
     public partial class HomeWorkN1 : Form
     {
         internal Редактор редактор;
+
+        private DataGridViewRow _currentDataGridViewRow_Users;
+        private DataGridViewRow _currentDataGridViewRow_Computers;
         public partial class WorkApp : DbContext
         {
 
@@ -52,11 +55,6 @@ namespace HomeWork
             UpdateDataGrids("");
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void tabControl1_SelectTab(object sender, EventArgs e)
         {
             if (tabControl1.SelectedTab.Name.Contains("Юзер"))
@@ -93,7 +91,9 @@ namespace HomeWork
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var row = UsersDataGrid.CurrentRow;
+
+
+
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,26 +102,6 @@ namespace HomeWork
         }
 
         private void dataGridView2_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void userBindingSource1_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void userBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }
@@ -205,6 +185,36 @@ namespace HomeWork
             Компьютеры.ResetBindings();
             UsersDataGrid.Refresh();
             UsersDataGrid.ResetBindings();
+        }
+
+        private void UsersDataGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if ((_currentDataGridViewRow_Users == null || _currentDataGridViewRow_Users != UsersDataGrid.CurrentRow) && редактор != null)
+            {
+                var row = UsersDataGrid.CurrentRow;
+
+                редактор.textBox1.Text = row.Cells[0].Value.ToString();
+                редактор.textBox2.Text = row.Cells[1].Value.ToString();
+                редактор.textBox3.Text = row.Cells[2].Value.ToString();
+
+                _currentDataGridViewRow_Users = row;
+            }
+        }
+
+        private void Компьютеры_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if ((_currentDataGridViewRow_Computers == null || _currentDataGridViewRow_Computers != Компьютеры.CurrentRow) && редактор != null)
+            {
+                var row = Компьютеры.CurrentRow;
+
+                редактор.textBox4.Text = row.Cells[0].Value.ToString();
+                редактор.textBox5.Text = row.Cells[1].Value.ToString();
+                редактор.textBox6.Text = row.Cells[2].Value.ToString();
+                редактор.textBox6.Text = row.Cells[3].Value.ToString();
+                редактор.textBox8.Text = row.Cells[3].Value.ToString();
+
+                _currentDataGridViewRow_Computers = row;
+            }
         }
     }
 }

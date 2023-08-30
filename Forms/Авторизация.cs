@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary_HomeWork;
+using HomeWork.MainCOde;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HomeWork
@@ -48,7 +49,7 @@ namespace HomeWork
                 }
                 else
                 {
-                    var IsLogged = Work.TryLogin(textBox1.Text, textBox2.Text);
+                    var IsLogged = Work.TryLogin(textBox1.Text);
                     if (!IsLogged)
                     {
                         using (var db = new HomeWorkN1.WorkApp())

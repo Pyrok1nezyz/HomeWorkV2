@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Text.Json;
 using System.Reflection;
-using ClassLibrary_HomeWork;
+using Library;
 
 namespace HomeWork
 {
@@ -74,6 +74,7 @@ namespace HomeWork
             Компьютеры.Size = new Size(976, 371);
             Компьютеры.TabIndex = 0;
             Компьютеры.CellContentClick += dataGridView2_CellContentClick_1;
+            Компьютеры.CellEnter += Компьютеры_CellEnter;
             // 
             // Юзеры
             // 
@@ -100,6 +101,7 @@ namespace HomeWork
             UsersDataGrid.Size = new Size(970, 363);
             UsersDataGrid.TabIndex = 0;
             UsersDataGrid.CellContentClick += dataGridView1_CellContentClick;
+            UsersDataGrid.RowEnter += UsersDataGrid_RowEnter;
             // 
             // tabControl1
             // 
