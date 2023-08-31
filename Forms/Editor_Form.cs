@@ -1,16 +1,16 @@
 ﻿using System.Data;
-using ClassLibrary_HomeWork;
+using HomeWork.Classes;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeWork
 {
-    public partial class Редактор : Form
+    public partial class Editor_Form : Form
     {
-        private HomeWorkN1 Таблицы;
+        private HomeWorkN1 Tables_Form;
 
-        public Редактор(HomeWorkN1 based, DataGridView dataGridView)
+        public Editor_Form(HomeWorkN1 based, DataGridView dataGridView)
         {
-            Таблицы = based;
+            Tables_Form = based;
 
             InitializeComponent();
             var row = dataGridView.CurrentRow;
@@ -37,13 +37,13 @@ namespace HomeWork
             }
             else
             {
-                new Редактор(based);
+                new Editor_Form(based);
             }
         }
 
-        public Редактор(HomeWorkN1 based)
+        public Editor_Form(HomeWorkN1 based)
         {
-            Таблицы = based;
+            Tables_Form = based;
             InitializeComponent();
             groupBox1.Hide();
         }
@@ -127,7 +127,7 @@ namespace HomeWork
                 }
             }
 
-            Таблицы.HomeWorkN1_Load(sender, e);
+            Tables_Form.HomeWorkN1_Load(sender, e);
         }
 
         private async void button3_Click(object sender, EventArgs e)
@@ -164,7 +164,7 @@ namespace HomeWork
                 }
             }
 
-            Таблицы.HomeWorkN1_Load(sender, e);
+            Tables_Form.HomeWorkN1_Load(sender, e);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -180,7 +180,7 @@ namespace HomeWork
 
         private void Редактор_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Таблицы.редактор = null;
+            Tables_Form.Editor_Form = null;
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)

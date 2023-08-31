@@ -8,15 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClassLibrary_HomeWork;
+using HomeWork.Classes;
 using HomeWork.MainCOde;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HomeWork
 {
-    public partial class Авторизация : Form
+    public partial class Autorization_Form : Form
     {
-        public Авторизация()
+        public Autorization_Form()
         {
             InitializeComponent();
 
@@ -77,7 +77,7 @@ namespace HomeWork
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 Application.Exit();
@@ -168,5 +168,10 @@ namespace HomeWork
         }
 
         private int _flagLabel1 = 0;
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

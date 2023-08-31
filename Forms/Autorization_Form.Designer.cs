@@ -1,6 +1,6 @@
 ﻿namespace HomeWork
 {
-    partial class Авторизация
+    partial class Autorization_Form
     {
         /// <summary>
         /// Required designer variable.

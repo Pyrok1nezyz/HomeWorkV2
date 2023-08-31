@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Text.Json;
 using System.Reflection;
-using Library;
+using HomeWork.Classes;
 
 namespace HomeWork
 {
@@ -34,23 +34,23 @@ namespace HomeWork
         private void InitializeComponent()
         {
             Компы = new TabPage();
-            Компьютеры = new DataGridView();
-            Юзеры = new TabPage();
+            ComputersDataGridView = new DataGridView();
+            UsersTabPageInTables = new TabPage();
             UsersDataGrid = new DataGridView();
             tabControl1 = new TabControl();
             button1 = new Button();
             comboBox1 = new ComboBox();
             label1 = new Label();
             Компы.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Компьютеры).BeginInit();
-            Юзеры.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ComputersDataGridView).BeginInit();
+            UsersTabPageInTables.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)UsersDataGrid).BeginInit();
             tabControl1.SuspendLayout();
             SuspendLayout();
             // 
             // Компы
             // 
-            Компы.Controls.Add(Компьютеры);
+            Компы.Controls.Add(ComputersDataGridView);
             Компы.Location = new Point(4, 29);
             Компы.Margin = new Padding(3, 4, 3, 4);
             Компы.Name = "Компы";
@@ -59,34 +59,33 @@ namespace HomeWork
             Компы.Text = "Компы";
             Компы.UseVisualStyleBackColor = true;
             // 
-            // Компьютеры
+            // ComputersDataGridView
             // 
-            Компьютеры.AllowUserToOrderColumns = true;
-            Компьютеры.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Компьютеры.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Компьютеры.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Компьютеры.Dock = DockStyle.Fill;
-            Компьютеры.Location = new Point(0, 0);
-            Компьютеры.Name = "Компьютеры";
-            Компьютеры.RightToLeft = RightToLeft.No;
-            Компьютеры.RowHeadersWidth = 51;
-            Компьютеры.RowTemplate.Height = 29;
-            Компьютеры.Size = new Size(976, 371);
-            Компьютеры.TabIndex = 0;
-            Компьютеры.CellContentClick += dataGridView2_CellContentClick_1;
-            Компьютеры.CellEnter += Компьютеры_CellEnter;
+            ComputersDataGridView.AllowUserToOrderColumns = true;
+            ComputersDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            ComputersDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            ComputersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ComputersDataGridView.Dock = DockStyle.Fill;
+            ComputersDataGridView.Location = new Point(0, 0);
+            ComputersDataGridView.Name = "ComputersDataGridView";
+            ComputersDataGridView.RightToLeft = RightToLeft.No;
+            ComputersDataGridView.RowHeadersWidth = 51;
+            ComputersDataGridView.RowTemplate.Height = 29;
+            ComputersDataGridView.Size = new Size(976, 371);
+            ComputersDataGridView.TabIndex = 0;
+            ComputersDataGridView.CellEnter += ComputersDataGridViewCellEnter;
             // 
-            // Юзеры
+            // UsersTabPageInTables
             // 
-            Юзеры.Controls.Add(UsersDataGrid);
-            Юзеры.Location = new Point(4, 29);
-            Юзеры.Margin = new Padding(3, 4, 3, 4);
-            Юзеры.Name = "Юзеры";
-            Юзеры.Padding = new Padding(3, 4, 3, 4);
-            Юзеры.Size = new Size(976, 371);
-            Юзеры.TabIndex = 1;
-            Юзеры.Text = "Юзеры";
-            Юзеры.UseVisualStyleBackColor = true;
+            UsersTabPageInTables.Controls.Add(UsersDataGrid);
+            UsersTabPageInTables.Location = new Point(4, 29);
+            UsersTabPageInTables.Margin = new Padding(3, 4, 3, 4);
+            UsersTabPageInTables.Name = "UsersTabPageInTables";
+            UsersTabPageInTables.Padding = new Padding(3, 4, 3, 4);
+            UsersTabPageInTables.Size = new Size(976, 371);
+            UsersTabPageInTables.TabIndex = 1;
+            UsersTabPageInTables.Text = "Юзеры";
+            UsersTabPageInTables.UseVisualStyleBackColor = true;
             // 
             // UsersDataGrid
             // 
@@ -100,13 +99,12 @@ namespace HomeWork
             UsersDataGrid.RowTemplate.Height = 29;
             UsersDataGrid.Size = new Size(970, 363);
             UsersDataGrid.TabIndex = 0;
-            UsersDataGrid.CellContentClick += dataGridView1_CellContentClick;
             UsersDataGrid.RowEnter += UsersDataGrid_RowEnter;
             // 
             // tabControl1
             // 
             tabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tabControl1.Controls.Add(Юзеры);
+            tabControl1.Controls.Add(UsersTabPageInTables);
             tabControl1.Controls.Add(Компы);
             tabControl1.Location = new Point(0, 47);
             tabControl1.Margin = new Padding(3, 4, 3, 4);
@@ -163,8 +161,8 @@ namespace HomeWork
             FormClosing += HomeWorkN1_FormClosing;
             Load += HomeWorkN1_Load;
             Компы.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)Компьютеры).EndInit();
-            Юзеры.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ComputersDataGridView).EndInit();
+            UsersTabPageInTables.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)UsersDataGrid).EndInit();
             tabControl1.ResumeLayout(false);
             ResumeLayout(false);
@@ -175,10 +173,10 @@ namespace HomeWork
         internal static List<User> userList = new();
         internal static List<Computer> comps = new();
         private TabPage Компы;
-        private TabPage Юзеры;
+        private TabPage UsersTabPageInTables;
         private TabControl tabControl1;
         public DataGridView UsersDataGrid;
-        public DataGridView Компьютеры;
+        public DataGridView ComputersDataGridView;
         private Button button1;
         private ComboBox comboBox1;
         private Label label1;

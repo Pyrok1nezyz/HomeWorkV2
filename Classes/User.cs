@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Library;
+namespace HomeWork.Classes;
 
 public class User
 {

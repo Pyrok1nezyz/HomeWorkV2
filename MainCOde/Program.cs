@@ -11,7 +11,7 @@ namespace HomeWork.MainCOde
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Авторизация());
+            Application.Run(new Autorization_Form());
         }
     }
 }

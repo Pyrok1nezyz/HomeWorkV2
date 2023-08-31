@@ -1,6 +1,6 @@
 ﻿namespace HomeWork
 {
-    partial class Редактор
+    partial class Editor_Form
     {
         /// <summary>
         /// Required designer variable.

@@ -14,7 +14,6 @@
     <PackageReference Include="MySql.Data" Version="8.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
-    <ProjectReference Include="..\ClassLibrary_HomeWork\Library.csproj" />
   </ItemGroup>
 
 </Project>
