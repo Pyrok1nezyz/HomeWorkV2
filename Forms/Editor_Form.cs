@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using HomeWork.Classes;
+using HomeWork.MainCOde;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeWork
@@ -86,7 +87,7 @@ namespace HomeWork
 
         private void button2_Click(object sender, EventArgs e)
         {
-            using (var db = new HomeWorkN1.WorkApp())
+            using (var db = new MySQLDbContext())
             {
                 var index = db.Users.OrderBy(e => e.Id).LastOrDefault().Id;
                 var newIndex = index + 1;
@@ -96,7 +97,7 @@ namespace HomeWork
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            using (var db = new HomeWorkN1.WorkApp())
+            using (var db = new MySQLDbContext())
             {
                 long i = 0;
                 long.TryParse(textBox1.Text, out i);
@@ -132,7 +133,7 @@ namespace HomeWork
 
         private async void button3_Click(object sender, EventArgs e)
         {
-            using (var db = new HomeWorkN1.WorkApp())
+            using (var db = new MySQLDbContext())
             {
                 int i = 0;
                 int.TryParse(textBox4.Text, out i);
@@ -169,7 +170,7 @@ namespace HomeWork
 
         private void button4_Click(object sender, EventArgs e)
         {
-            using (var db = new HomeWorkN1.WorkApp())
+            using (var db = new MySQLDbContext())
             {
                 var lastcomp = db.Computers.OrderBy(e => e.Id).LastOrDefault();
                 var index = lastcomp.Id + 1;

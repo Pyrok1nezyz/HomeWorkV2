@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using HomeWork.Classes;
+using HomeWork.MainCOde;
 
 namespace HomeWork
 {
@@ -10,32 +11,7 @@ namespace HomeWork
 
         private DataGridViewRow _currentDataGridViewRow_Users;
         private DataGridViewRow _currentDataGridViewRow_Computers;
-        public partial class WorkApp : DbContext
-        {
-
-            public WorkApp()
-            {
-                Database.EnsureCreated();
-            }
-
-            public WorkApp(DbContextOptions<WorkApp> options)
-            : base(options)
-            {
-            }
-
-            public DbSet<User> Users { get; set; } = null!;
-            public DbSet<Computer> Computers { get; set; } = null!;
-
-            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-                => optionsBuilder.UseMySql("server=localhost;user=root;password=telega123;database=usersdb;", new MySqlServerVersion(new Version(8, 1, 0)));
-
-
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
-            {
-            }
-
-            partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-        }
+        
         public HomeWorkN1()
         {
             InitializeComponent();
@@ -129,7 +105,7 @@ namespace HomeWork
         {
             if (string.IsNullOrEmpty(query))
             {
-                using (var db = new WorkApp())
+                using (var db = new MySQLDbContext())
                 {
                     db.Users.Load();
                     db.Computers.Load();
@@ -141,7 +117,7 @@ namespace HomeWork
             {
                 if (tabControl1.SelectedTab.Text.Contains("Юзеры"))
                 {
-                    using (var db = new WorkApp())
+                    using (var db = new MySQLDbContext())
                     {
                         UsersDataGrid.DataSource = db.Users.OrderBy(e => EF.Property<User>(e, query)).ToArray();
                         //UsersDataGrid.DataSource = db.Users.FromSqlRaw($"SELECT * FROM Users ORDER BY {query}").ToArray();
@@ -151,7 +127,7 @@ namespace HomeWork
                 }
                 else
                 {
-                    using (var db = new WorkApp())
+                    using (var db = new MySQLDbContext())
                     {
                         ComputersDataGridView.DataSource = db.Computers.OrderBy(e => EF.Property<Computer>(e, query)).ToArray();
                         //Компьютеры.DataSource = db.Computers.FromSqlRaw($"SELECT * FROM Computers ORDER BY {query}").ToArray();

@@ -52,7 +52,7 @@ namespace HomeWork
                     var IsLogged = Work.TryLogin(textBox1.Text);
                     if (!IsLogged)
                     {
-                        using (var db = new HomeWorkN1.WorkApp())
+                        using (var db = new MySQLDbContext())
                         {
                             var user = new User()
                             {
@@ -107,7 +107,7 @@ namespace HomeWork
                     Password = password
                 };
 
-                using (var db = new HomeWorkN1.WorkApp())
+                using (var db = new MySQLDbContext())
                 {
                     db.Users.Load();
                     db.Add(user);

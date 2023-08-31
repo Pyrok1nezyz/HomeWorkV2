@@ -33,7 +33,7 @@ namespace HomeWork
         /// </summary>
         private void InitializeComponent()
         {
-            Компы = new TabPage();
+            ComputersTabPage = new TabPage();
             ComputersDataGridView = new DataGridView();
             UsersTabPageInTables = new TabPage();
             UsersDataGrid = new DataGridView();
@@ -41,23 +41,23 @@ namespace HomeWork
             button1 = new Button();
             comboBox1 = new ComboBox();
             label1 = new Label();
-            Компы.SuspendLayout();
+            ComputersTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ComputersDataGridView).BeginInit();
             UsersTabPageInTables.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)UsersDataGrid).BeginInit();
             tabControl1.SuspendLayout();
             SuspendLayout();
             // 
-            // Компы
+            // ComputersTabPage
             // 
-            Компы.Controls.Add(ComputersDataGridView);
-            Компы.Location = new Point(4, 29);
-            Компы.Margin = new Padding(3, 4, 3, 4);
-            Компы.Name = "Компы";
-            Компы.Size = new Size(976, 371);
-            Компы.TabIndex = 2;
-            Компы.Text = "Компы";
-            Компы.UseVisualStyleBackColor = true;
+            ComputersTabPage.Controls.Add(ComputersDataGridView);
+            ComputersTabPage.Location = new Point(4, 29);
+            ComputersTabPage.Margin = new Padding(3, 4, 3, 4);
+            ComputersTabPage.Name = "ComputersTabPage";
+            ComputersTabPage.Size = new Size(976, 371);
+            ComputersTabPage.TabIndex = 2;
+            ComputersTabPage.Text = "Компы";
+            ComputersTabPage.UseVisualStyleBackColor = true;
             // 
             // ComputersDataGridView
             // 
@@ -105,7 +105,7 @@ namespace HomeWork
             // 
             tabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControl1.Controls.Add(UsersTabPageInTables);
-            tabControl1.Controls.Add(Компы);
+            tabControl1.Controls.Add(ComputersTabPage);
             tabControl1.Location = new Point(0, 47);
             tabControl1.Margin = new Padding(3, 4, 3, 4);
             tabControl1.Name = "tabControl1";
@@ -160,7 +160,7 @@ namespace HomeWork
             Text = "HomeWorkN1";
             FormClosing += HomeWorkN1_FormClosing;
             Load += HomeWorkN1_Load;
-            Компы.ResumeLayout(false);
+            ComputersTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ComputersDataGridView).EndInit();
             UsersTabPageInTables.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)UsersDataGrid).EndInit();
@@ -172,7 +172,7 @@ namespace HomeWork
         #endregion
         internal static List<User> userList = new();
         internal static List<Computer> comps = new();
-        private TabPage Компы;
+        private TabPage ComputersTabPage;
         private TabPage UsersTabPageInTables;
         private TabControl tabControl1;
         public DataGridView UsersDataGrid;

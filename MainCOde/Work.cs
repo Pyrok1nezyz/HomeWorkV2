@@ -4,6 +4,7 @@ using System.Linq;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using System.Windows.Forms;
+using HomeWork.MainCOde;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeWork;
@@ -23,18 +24,19 @@ public class Work
 
     public static bool TryLogin(string name, string password)
     {
-        using (var db = new HomeWorkN1.WorkApp())
+        using (var db = new MySQLDbContext())
         {
             //var query = db.Users.Find(user);
             //var answer = db.Users.FromSql($"SELECT * FROM Users WHERE Name = {name} AND Password = {password};");
-            var answer = db.Users.Any(e => e.Name == name && e.Password == password);
-            return answer;
+            //var answer = db.Users.Any(e => EF.Functions.Collate(e.Name, "SQL_Latin1_General_CP1_CS_AS") == name && EF.Functions.Collate(e.Password, "SQL_Latin1_General_CP1_CS_AS") == password);
+            var answer = db.Users.Where(e => e.Name == name && e.Password == password);
+            return answer != null;
         }
     }
 
     public static bool TryLogin(string name)
     {
-        using (var db = new HomeWorkN1.WorkApp())
+        using (var db = new MySQLDbContext())
         {
             return db.Users.Any(e => e.Name == name);
         }
