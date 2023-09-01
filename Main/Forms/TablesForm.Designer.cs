@@ -1,11 +1,8 @@
-﻿using System.Data;
-using System.Text.Json;
-using System.Reflection;
-using HomeWork.Classes;
+﻿using HomeWork.Classes;
 
-namespace HomeWork
+namespace HomeWork.Forms
 {
-    partial class HomeWorkN1
+    partial class TablesForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -155,7 +152,7 @@ namespace HomeWork
             Controls.Add(button1);
             Controls.Add(tabControl1);
             MinimumSize = new Size(1001, 498);
-            Name = "HomeWorkN1";
+            Name = "TablesForm";
             RightToLeft = RightToLeft.No;
             Text = "HomeWorkN1";
             FormClosing += HomeWorkN1_FormClosing;

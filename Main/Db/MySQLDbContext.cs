@@ -1,9 +1,9 @@
 ﻿using HomeWork.Classes;
 using Microsoft.EntityFrameworkCore;
 
-namespace HomeWork.MainCOde;
+namespace HomeWork.Db;
 
-public class MySQLDbContext : DbContext
+public sealed class MySQLDbContext : DbContext
 {
         public MySQLDbContext()
         {
@@ -19,7 +19,7 @@ public class MySQLDbContext : DbContext
         public DbSet<Computer> Computers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseMySql("server=localhost;user=root;password=telega123;database=usersdb;", new MySqlServerVersion(new Version(8, 1, 0)));
+            => optionsBuilder.UseMySql("server=localhost;user=root;password=root;database=usersdb;", new MySqlServerVersion(new Version(8, 1, 0)));
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

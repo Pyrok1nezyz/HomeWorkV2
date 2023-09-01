@@ -1,42 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data.Entity;
 using HomeWork.Classes;
-using HomeWork.MainCOde;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using HomeWork.Db;
 
-namespace HomeWork
+namespace HomeWork.Forms
 {
-    public partial class Autorization_Form : Form
+    public partial class AutorizationForm : Form
     {
-        public Autorization_Form()
+        public AutorizationForm()
         {
             InitializeComponent();
-
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                if (indexLayout == 0)
+                if (_indexLayout == 0)
                 {
-                    var IsLogged = Work.TryLogin(textBox1.Text, textBox2.Text);
+                    var isLogged = Work.TryLogin(textBox1.Text, textBox2.Text);
 
-                    if (IsLogged)
+                    if (isLogged)
                     {
                         label4.Text = "Logged";
                         label4.ForeColor = Color.Green;
                         Work.Twinkling(label4);
 
-                        var form = new HomeWorkN1();
+                        var form = new TablesForm();
                         form.Show();
                         Hide();
                     }
@@ -49,8 +38,8 @@ namespace HomeWork
                 }
                 else
                 {
-                    var IsLogged = Work.TryLogin(textBox1.Text);
-                    if (!IsLogged)
+                    var isLogged = Work.TryLogin(textBox1.Text);
+                    if (!isLogged)
                     {
                         using (var db = new MySQLDbContext())
                         {
@@ -107,12 +96,10 @@ namespace HomeWork
                     Password = password
                 };
 
-                using (var db = new MySQLDbContext())
-                {
-                    db.Users.Load();
-                    db.Add(user);
-                    db.SaveChanges();
-                }
+                using var db = new MySQLDbContext();
+                db.Users.Load();
+                db.Add(user);
+                db.SaveChanges();
             }
         }
 
@@ -131,23 +118,23 @@ namespace HomeWork
 
         }
 
-        int indexLayout = 0;
+        int _indexLayout = 0;
 
         private void ChangeText_Click(object sender, EventArgs e)
         {
-            if (indexLayout == 0)
+            if (_indexLayout == 0)
             {
                 label1.Text = "Регистрация";
                 button1.Text = "Зарегестрироваться";
                 ChangeText.Text = "Login";
-                indexLayout = 1;
+                _indexLayout = 1;
             }
             else
             {
                 label1.Text = "Логин";
                 button1.Text = "Логин";
                 ChangeText.Text = "Registration";
-                indexLayout = 0;
+                _indexLayout = 0;
             }
         }
 

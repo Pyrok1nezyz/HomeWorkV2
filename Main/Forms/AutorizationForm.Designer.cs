@@ -1,6 +1,6 @@
-﻿namespace HomeWork
+﻿namespace HomeWork.Forms
 {
-    partial class Autorization_Form
+    partial class AutorizationForm
     {
         /// <summary>
         /// Required designer variable.
