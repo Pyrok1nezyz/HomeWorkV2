@@ -6,8 +6,8 @@ public class Computer
 {
     [Key]
     public int Id { get; set; }
-    public string PCName { get; set; }
-    public string ip { get; set; }
+    public string Name { get; set; }
+    public string Ip { get; set; }
 
     public string Props { get; set; }
 

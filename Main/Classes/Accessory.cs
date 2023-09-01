@@ -2,7 +2,7 @@
 
 namespace HomeWork.Classes;
 
-public class Accessori
+public class Accessory
 {
     [Key]
     public long Id { get; set; }

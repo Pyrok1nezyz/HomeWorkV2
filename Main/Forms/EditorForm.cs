@@ -1,17 +1,15 @@
-﻿using System.Data;
-using HomeWork.Classes;
-using HomeWork.MainCOde;
-using Microsoft.EntityFrameworkCore;
+﻿using HomeWork.Classes;
+using HomeWork.Db;
 
-namespace HomeWork
+namespace HomeWork.Forms
 {
-    public partial class Editor_Form : Form
+    public partial class EditorForm : Form
     {
-        private HomeWorkN1 Tables_Form;
+        private readonly TablesForm _tablesForm;
 
-        public Editor_Form(HomeWorkN1 based, DataGridView dataGridView)
+        public EditorForm(TablesForm based, DataGridView dataGridView)
         {
-            Tables_Form = based;
+            _tablesForm = based;
 
             InitializeComponent();
             var row = dataGridView.CurrentRow;
@@ -38,13 +36,13 @@ namespace HomeWork
             }
             else
             {
-                new Editor_Form(based);
+                new EditorForm(based);
             }
         }
 
-        public Editor_Form(HomeWorkN1 based)
+        public EditorForm(TablesForm based)
         {
-            Tables_Form = based;
+            _tablesForm = based;
             InitializeComponent();
             groupBox1.Hide();
         }
@@ -87,12 +85,10 @@ namespace HomeWork
 
         private void button2_Click(object sender, EventArgs e)
         {
-            using (var db = new MySQLDbContext())
-            {
-                var index = db.Users.OrderBy(e => e.Id).LastOrDefault().Id;
-                var newIndex = index + 1;
-                textBox1.Text = newIndex.ToString();
-            }
+            using var db = new MySQLDbContext();
+            var index = db.Users.OrderBy(e => e.Id).LastOrDefault().Id;
+            var newIndex = index + 1;
+            textBox1.Text = newIndex.ToString();
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -128,7 +124,7 @@ namespace HomeWork
                 }
             }
 
-            Tables_Form.HomeWorkN1_Load(sender, e);
+            _tablesForm.HomeWorkN1_Load(sender, e);
         }
 
         private async void button3_Click(object sender, EventArgs e)
@@ -142,8 +138,8 @@ namespace HomeWork
 
                 if (computer != null)
                 {
-                    computer.PCName = textBox5.Text;
-                    computer.ip = textBox6.Text;
+                    computer.Name = textBox5.Text;
+                    computer.Ip = textBox6.Text;
                     computer.Props = textBox7.Text;
                     computer.Notation = textBox8.Text;
 
@@ -155,8 +151,8 @@ namespace HomeWork
                     var newCOmp = new Computer()
                     {
                         Id = i,
-                        PCName = textBox5.Text,
-                        ip = textBox6.Text,
+                        Name = textBox5.Text,
+                        Ip = textBox6.Text,
                         Props = textBox7.Text,
                         Notation = textBox8.Text
                     };
@@ -165,23 +161,21 @@ namespace HomeWork
                 }
             }
 
-            Tables_Form.HomeWorkN1_Load(sender, e);
+            _tablesForm.HomeWorkN1_Load(sender, e);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            using (var db = new MySQLDbContext())
-            {
-                var lastcomp = db.Computers.OrderBy(e => e.Id).LastOrDefault();
-                var index = lastcomp.Id + 1;
+            using var db = new MySQLDbContext();
+            var lastcomp = db.Computers.OrderBy(e => e.Id).LastOrDefault();
+            var index = lastcomp.Id + 1;
 
-                textBox4.Text = index.ToString();
-            }
+            textBox4.Text = index.ToString();
         }
 
         private void Редактор_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Tables_Form.Editor_Form = null;
+            _tablesForm.EditorForm = null;
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)

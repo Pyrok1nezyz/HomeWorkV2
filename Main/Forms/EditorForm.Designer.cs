@@ -1,6 +1,6 @@
-﻿namespace HomeWork
+﻿namespace HomeWork.Forms
 {
-    partial class Editor_Form
+    partial class EditorForm
     {
         /// <summary>
         /// Required designer variable.
