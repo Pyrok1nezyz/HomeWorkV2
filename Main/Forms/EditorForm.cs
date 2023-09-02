@@ -86,7 +86,7 @@ namespace HomeWork.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             using var db = new MySQLDbContext();
-            var index = db.Users.OrderBy(e => e.Id).LastOrDefault().Id;
+            var index = db.Users.OrderBy(e => e.Id).LastOrDefault()!.Id;
             var newIndex = index + 1;
             textBox1.Text = newIndex.ToString();
         }
@@ -111,12 +111,10 @@ namespace HomeWork.Forms
                 }
                 else
                 {
-                    var newUser = new User()
+                    var newUser = new User(textBox2.Text, textBox3.Text)
                     {
                         Id = i,
-                        Name = textBox2.Text,
                         Computer = db.Computers.OrderBy(e => e.Id).LastOrDefault(),
-                        Password = textBox3.Text,
                     };
 
                     db.Users.Add(newUser);
@@ -148,11 +146,9 @@ namespace HomeWork.Forms
                 }
                 else
                 {
-                    var newCOmp = new Computer()
+                    var newCOmp = new Computer(textBox5.Text, textBox6.Text)
                     {
                         Id = i,
-                        Name = textBox5.Text,
-                        Ip = textBox6.Text,
                         Props = textBox7.Text,
                         Notation = textBox8.Text
                     };
@@ -167,9 +163,17 @@ namespace HomeWork.Forms
         private void button4_Click(object sender, EventArgs e)
         {
             using var db = new MySQLDbContext();
-            var lastcomp = db.Computers.OrderBy(e => e.Id).LastOrDefault();
-            var index = lastcomp.Id + 1;
+            var index = 0;
 
+            var lastcomp = db.Computers.OrderBy(e => e.Id).LastOrDefault()!;
+            if (lastcomp == null)
+            {
+                index = 1;
+            }
+            else
+            {
+                index = lastcomp.Id + 1;
+            }
             textBox4.Text = index.ToString();
         }
 

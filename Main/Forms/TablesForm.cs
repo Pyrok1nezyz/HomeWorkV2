@@ -7,11 +7,11 @@ namespace HomeWork.Forms
 {
     public partial class TablesForm : Form
     {
-        internal EditorForm EditorForm;
+        internal EditorForm? EditorForm;
 
-        private DataGridViewRow _currentDataGridViewRowUsers;
-        private DataGridViewRow _currentDataGridViewRowComputers;
-        
+        private DataGridViewRow? _currentDataGridViewRowUsers;
+        private DataGridViewRow? _currentDataGridViewRowComputers;
+
         public TablesForm()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace HomeWork.Forms
 
         private void tabControl1_SelectTab(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab.Name.Contains("ёзер"))
+            if (tabControl1.SelectedTab.Name.Contains("User"))
             {
                 if (EditorForm != null)
                 {
@@ -97,7 +97,7 @@ namespace HomeWork.Forms
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var query = comboBox1.SelectedItem.ToString();
+            var query = comboBox1.SelectedItem.ToString()!;
             UpdateDataGrids(query);
         }
 
@@ -144,6 +144,8 @@ namespace HomeWork.Forms
             {
                 var row = UsersDataGrid.CurrentRow;
 
+                if(row == null) return;
+
                 EditorForm.textBox1.Text = row.Cells[0].Value.ToString();
                 EditorForm.textBox2.Text = row.Cells[1].Value.ToString();
                 EditorForm.textBox3.Text = row.Cells[2].Value.ToString();
@@ -157,6 +159,8 @@ namespace HomeWork.Forms
             if ((_currentDataGridViewRowComputers == null || _currentDataGridViewRowComputers != ComputersDataGridView.CurrentRow) && EditorForm != null)
             {
                 var row = ComputersDataGridView.CurrentRow;
+
+                if (row == null) return;
 
                 EditorForm.textBox4.Text = row.Cells[0].Value.ToString();
                 EditorForm.textBox5.Text = row.Cells[1].Value.ToString();

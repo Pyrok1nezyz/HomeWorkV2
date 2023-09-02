@@ -15,12 +15,24 @@ public class Work
 
     public static bool TryLogin(string name, string password)
     {
-        using var db = new MySQLDbContext();
+        using (var db = new MySQLDbContext())
+        {
+            var userList = db.Users.Where(e => e.Name == name && e.Password == password).ToList();
+
+            foreach (var user in userList)
+            {
+                if (user.Name == name && user.Password == password)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+
         //var query = db.Users.Find(user);
         //var answer = db.Users.FromSql($"SELECT * FROM Users WHERE Name = {name} AND Password = {password};");
         //var answer = db.Users.Any(e => EF.Functions.Collate(e.Name, "SQL_Latin1_General_CP1_CS_AS") == name && EF.Functions.Collate(e.Password, "SQL_Latin1_General_CP1_CS_AS") == password);
-        var answer = db.Users.Where(e => e.Name == name && e.Password == password);
-        return answer != null;
     }
 
     public static bool TryLogin(string name)

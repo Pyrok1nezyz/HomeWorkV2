@@ -4,6 +4,12 @@ namespace HomeWork.Classes;
 
 public class User
 {
+    public User(string name, string password)
+    {
+        Name = name;
+        Password = password;
+    }
+
     [Key]
     public long Id { get; set; }
 

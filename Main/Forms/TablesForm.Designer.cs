@@ -142,7 +142,7 @@ namespace HomeWork.Forms
             label1.TabIndex = 6;
             label1.Text = "Сортировка";
             // 
-            // HomeWorkN1
+            // TablesForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;

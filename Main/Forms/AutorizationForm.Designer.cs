@@ -98,6 +98,7 @@
             textBox1.PlaceholderText = "Login";
             textBox1.Size = new Size(114, 27);
             textBox1.TabIndex = 15;
+            textBox1.TextChanged += textBox1_TextChanged;
             textBox1.KeyDown += textBox1_KeyDown;
             // 
             // ChangeText
@@ -112,7 +113,7 @@
             ChangeText.UseVisualStyleBackColor = true;
             ChangeText.Click += ChangeText_Click;
             // 
-            // Авторизация
+            // AutorizationForm
             // 
             AccessibleDescription = "Введите логин";
             AccessibleName = "Тут вводить логин";
@@ -128,7 +129,7 @@
             Controls.Add(textBox1);
             MinimizeBox = false;
             MinimumSize = new Size(818, 497);
-            Name = "Авторизация";
+            Name = "AutorizationForm";
             Text = "Авторизация";
             Load += Авторизация_Load;
             ResumeLayout(false);

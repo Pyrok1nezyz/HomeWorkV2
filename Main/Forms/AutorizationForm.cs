@@ -6,6 +6,9 @@ namespace HomeWork.Forms
 {
     public partial class AutorizationForm : Form
     {
+        private int _flagLabel1 = 0;
+        int _indexLayout = 0;
+
         public AutorizationForm()
         {
             InitializeComponent();
@@ -43,15 +46,13 @@ namespace HomeWork.Forms
                     {
                         using (var db = new MySQLDbContext())
                         {
-                            var user = new User()
+                            var user = new User(textBox1.Text, textBox2.Text)
                             {
-                                Name = textBox1.Text,
-                                Password = textBox2.Text,
                                 Computer = db.Computers.FirstOrDefault()
                             };
 
-                            db.AddAsync(user);
-                            db.SaveChangesAsync();
+                            db.Add(user);
+                            db.SaveChanges();
                         }
 
                         label4.Text = "Зарегестрирован!";
@@ -90,11 +91,7 @@ namespace HomeWork.Forms
                 label4.ForeColor = Color.Green;
                 Work.Twinkling(label4);
 
-                var user = new User
-                {
-                    Name = login,
-                    Password = password
-                };
+                var user = new User(login, password);
 
                 using var db = new MySQLDbContext();
                 db.Users.Load();
@@ -107,18 +104,6 @@ namespace HomeWork.Forms
         {
 
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        int _indexLayout = 0;
 
         private void ChangeText_Click(object sender, EventArgs e)
         {
@@ -154,9 +139,8 @@ namespace HomeWork.Forms
             }
         }
 
-        private int _flagLabel1 = 0;
 
-        private void label1_Click(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
