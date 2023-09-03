@@ -27,12 +27,19 @@ namespace HomeWork.Forms
             }
             else if (dataGridView.Name.Contains("User"))
             {
+                using var db = new MySQLDbContext();
                 groupBox2.Hide();
                 groupBox1.Show();
 
                 textBox1.Text = row.Cells[0].Value.ToString();
                 textBox2.Text = row.Cells[1].Value.ToString();
                 textBox3.Text = row.Cells[2].Value.ToString();
+
+                comboBox1.Items.Clear();
+                foreach (var computer in db.GetComputers())
+                {
+                    comboBox1.Items.Add(computer);
+                }
             }
             else
             {
@@ -103,7 +110,7 @@ namespace HomeWork.Forms
                 if (user != null)
                 {
                     user.Name = textBox2.Text;
-                    user.Computer = db.GetComputers().OrderBy(e => e.Id).FirstOrDefault();
+                    user.Computer = (Computer)comboBox1.SelectedItem;
                     user.Password = textBox3.Text;
 
                     db.UpdateUser(user);
@@ -114,7 +121,7 @@ namespace HomeWork.Forms
                     var newUser = new User(textBox2.Text, textBox3.Text)
                     {
                         Id = i,
-                        Computer = db.GetComputers().OrderBy(e => e.Id).LastOrDefault(),
+                        Computer = (Computer)comboBox1.SelectedItem
                     };
 
                     db.AddUser(newUser);
@@ -125,7 +132,7 @@ namespace HomeWork.Forms
             _tablesForm.HomeWorkN1_Load(sender, e);
         }
 
-        private async void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             using (var db = new MySQLDbContext())
             {
@@ -183,6 +190,11 @@ namespace HomeWork.Forms
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

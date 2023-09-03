@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            comboBox1 = new ComboBox();
             button1 = new Button();
             button2 = new Button();
             textBox3 = new TextBox();
@@ -48,6 +49,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(comboBox1);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(button2);
             groupBox1.Controls.Add(textBox3);
@@ -60,6 +62,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Юзеры";
             groupBox1.Enter += groupBox1_Enter;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(394, 25);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(227, 28);
+            comboBox1.TabIndex = 8;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // button1
             // 
@@ -83,7 +94,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(393, 26);
+            textBox3.Location = new Point(263, 26);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(125, 27);
             textBox3.TabIndex = 2;
@@ -91,7 +102,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(262, 26);
+            textBox2.Location = new Point(132, 26);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 1;
@@ -99,7 +110,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(131, 26);
+            textBox1.Location = new Point(1, 26);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(125, 27);
@@ -183,7 +194,7 @@
             textBox6.TabIndex = 4;
             textBox6.TextChanged += textBox6_TextChanged;
             // 
-            // Редактор
+            // EditorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -192,7 +203,7 @@
             Controls.Add(groupBox1);
             MaximumSize = new Size(831, 368);
             MinimumSize = new Size(831, 368);
-            Name = "Редактор";
+            Name = "EditorForm";
             Text = "Редактирование Таблицы";
             FormClosed += Редактор_FormClosed;
             Load += Form2_Load;
@@ -218,5 +229,6 @@
         internal TextBox textBox6;
         internal Button button3;
         internal Button button4;
+        internal ComboBox comboBox1;
     }
 }

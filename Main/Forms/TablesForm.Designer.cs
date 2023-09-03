@@ -65,6 +65,7 @@ namespace HomeWork.Forms
             ComputersDataGridView.Dock = DockStyle.Fill;
             ComputersDataGridView.Location = new Point(0, 0);
             ComputersDataGridView.Name = "ComputersDataGridView";
+            ComputersDataGridView.ReadOnly = true;
             ComputersDataGridView.RightToLeft = RightToLeft.No;
             ComputersDataGridView.RowHeadersWidth = 51;
             ComputersDataGridView.RowTemplate.Height = 29;
@@ -91,12 +92,13 @@ namespace HomeWork.Forms
             UsersDataGrid.Dock = DockStyle.Fill;
             UsersDataGrid.Location = new Point(3, 4);
             UsersDataGrid.Name = "UsersDataGrid";
+            UsersDataGrid.ReadOnly = true;
             UsersDataGrid.RightToLeft = RightToLeft.No;
             UsersDataGrid.RowHeadersWidth = 51;
             UsersDataGrid.RowTemplate.Height = 29;
             UsersDataGrid.Size = new Size(970, 363);
             UsersDataGrid.TabIndex = 0;
-            UsersDataGrid.CellContentClick += UsersDataGrid_CellContentClick_1;
+            UsersDataGrid.CellEnter += UsersDataGrid_CellEnter;
             UsersDataGrid.RowEnter += UsersDataGrid_RowEnter;
             // 
             // tabControl1

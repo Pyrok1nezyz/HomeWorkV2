@@ -199,18 +199,7 @@ namespace HomeWork.Forms
 
         private void UsersDataGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if ((_currentDataGridViewRowUsers == null || _currentDataGridViewRowUsers != UsersDataGrid.CurrentRow) && EditorForm != null)
-            {
-                var row = UsersDataGrid.CurrentRow;
-
-                if (row == null) return;
-
-                EditorForm.textBox1.Text = row.Cells[0].Value.ToString();
-                EditorForm.textBox2.Text = row.Cells[1].Value.ToString();
-                EditorForm.textBox3.Text = row.Cells[2].Value.ToString();
-
-                _currentDataGridViewRowUsers = row;
-            }
+           
         }
 
         private void ComputersDataGridViewCellEnter(object sender, DataGridViewCellEventArgs e)
@@ -231,9 +220,35 @@ namespace HomeWork.Forms
             }
         }
 
-        private void UsersDataGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        private void UsersDataGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            if ((_currentDataGridViewRowUsers == null || _currentDataGridViewRowUsers != UsersDataGrid.CurrentRow) && EditorForm != null)
+            {
+                var row = UsersDataGrid.CurrentRow;
+                using var db = new MySQLDbContext();
 
+                if (row == null) return;
+
+                EditorForm.textBox1.Text = row.Cells[0].Value.ToString();
+                EditorForm.textBox2.Text = row.Cells[1].Value.ToString();
+                EditorForm.textBox3.Text = row.Cells[2].Value.ToString();
+
+                //list of computers
+                EditorForm.comboBox1.Items.Clear();
+                foreach (var computer in db.GetComputers())
+                {
+                    EditorForm.comboBox1.Items.Add(computer);
+                }
+                var comp = (Computer)row.Cells[3].Value;
+
+                if (comp != null)
+                {
+                    EditorForm.comboBox1.SelectedIndex = comp.Id - 1;
+                    EditorForm.comboBox1.Refresh();
+                }
+
+                _currentDataGridViewRowUsers = row;
+            }
         }
     }
 }

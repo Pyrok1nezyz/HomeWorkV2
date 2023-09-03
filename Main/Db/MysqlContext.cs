@@ -133,8 +133,8 @@ public sealed class MySQLDbContext : IDisposable
     public int UpdateUser(User user, MySqlConnection connection)
     {
         var query = user.Computer != null
-            ? $"UPDATE Users SET Name={user.Name},Password={user.Password},ComputerId={user.Computer.Id} WHERE Id={user.Id}"
-            : $"UPDATE Users SET Name={user.Name},Password={user.Password} WHERE Id={user.Id}";
+            ? $"UPDATE Users SET Name='{user.Name}',Password='{user.Password}',ComputerId='{user.Computer.Id}' WHERE Id='{user.Id}';"
+            : $"UPDATE Users SET Name='{user.Name}',Password='{user.Password}' WHERE Id='{user.Id}';";
         var cmd = new MySqlCommand(query, connection);
         var IsUpdated = cmd.ExecuteNonQuery();
         if (IsUpdated == 0)
