@@ -96,6 +96,7 @@ namespace HomeWork.Forms
             UsersDataGrid.RowTemplate.Height = 29;
             UsersDataGrid.Size = new Size(970, 363);
             UsersDataGrid.TabIndex = 0;
+            UsersDataGrid.CellContentClick += UsersDataGrid_CellContentClick_1;
             UsersDataGrid.RowEnter += UsersDataGrid_RowEnter;
             // 
             // tabControl1

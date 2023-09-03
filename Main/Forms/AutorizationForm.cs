@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using HomeWork.Classes;
+﻿using HomeWork.Classes;
 using HomeWork.Db;
 
 namespace HomeWork.Forms
@@ -16,8 +15,8 @@ namespace HomeWork.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 if (_indexLayout == 0)
                 {
                     var isLogged = Work.TryLogin(textBox1.Text, textBox2.Text);
@@ -48,11 +47,11 @@ namespace HomeWork.Forms
                         {
                             var user = new User(textBox1.Text, textBox2.Text)
                             {
-                                Computer = db.Computers.FirstOrDefault()
+                                Computer = db.GetComputers().FirstOrDefault()
                             };
 
-                            db.Add(user);
-                            db.SaveChanges();
+                            db.AddUser(user);
+                            db.GetUsers();
                         }
 
                         label4.Text = "Зарегестрирован!";
@@ -66,12 +65,12 @@ namespace HomeWork.Forms
                         Work.Twinkling(label4);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Application.Exit();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //    Application.Exit();
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -94,9 +93,8 @@ namespace HomeWork.Forms
                 var user = new User(login, password);
 
                 using var db = new MySQLDbContext();
-                db.Users.Load();
-                db.Add(user);
-                db.SaveChanges();
+                db.AddUser(user);
+                db.GetUsers();
             }
         }
 

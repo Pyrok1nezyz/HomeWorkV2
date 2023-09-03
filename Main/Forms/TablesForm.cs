@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using HomeWork.Classes;
 using HomeWork.Db;
-using Microsoft.EntityFrameworkCore;
 
 namespace HomeWork.Forms
 {
@@ -106,36 +105,96 @@ namespace HomeWork.Forms
             if (string.IsNullOrEmpty(query))
             {
                 using var db = new MySQLDbContext();
-                db.Users.Load();
-                db.Computers.Load();
-                ComputersDataGridView.DataSource = db.Computers.Local.ToArray();
-                UsersDataGrid.DataSource = db.Users.Local.ToArray();
+                db.GetUsers();
+                db.GetComputers();
+                ComputersDataGridView.DataSource = db.GetComputers();
+                UsersDataGrid.DataSource = db.GetUsers();
             }
             else
             {
                 if (tabControl1.SelectedTab.Text.Contains("Юзеры"))
                 {
                     using var db = new MySQLDbContext();
-                    UsersDataGrid.DataSource = db.Users.OrderBy(e => EF.Property<User>(e, query)).ToArray();
-                    //UsersDataGrid.DataSource = db.Users.FromSqlRaw($"SELECT * FROM Users ORDER BY {query}").ToArray();
 
-                    db.Users.OrderBy(e => EF.Property<User>(e, query));
+                    switch (query)
+                    {
+                        default:
+                            {
+                                UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Id).ToList();
+                                break;
+                            }
+
+                        case "Name":
+                            {
+                                UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Name).ToList();
+                                break;
+                            }
+
+                        case "Password":
+                            {
+                                UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Password).ToList();
+                                break;
+                            }
+
+                        case "Computer":
+                            {
+                                UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Computer).ToList();
+                                break;
+                            }
+                    }
+
+                    //UsersDataGrid.DataSource = db.Users.FromSqlRaw($"SELECT * FROM Users ORDER BY {query}").ToArray();
                 }
                 else
                 {
                     using var db = new MySQLDbContext();
-                    ComputersDataGridView.DataSource = db.Computers.OrderBy(e => EF.Property<Computer>(e, query)).ToArray();
+
+                    switch (query)
+                    {
+                        default:
+                            {
+                                ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Id).ToList();
+                                break;
+                            }
+
+                        case "Name":
+                            {
+                                ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Name).ToList();
+                                break;
+                            }
+
+                        case "Ip":
+                            {
+                                ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Ip).ToList();
+                                break;
+                            }
+
+                        case "Props":
+                            {
+                                ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Props).ToList();
+                                break;
+                            }
+
+                        case "Notation":
+                            {
+                                ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Notation).ToList();
+                                break;
+                            }
+                    }
+
+
+                    //ComputersDataGridView.DataSource = db.Computers.OrderBy(e => EF.Property<Computer>(e, query)).ToArray();
                     //Компьютеры.DataSource = db.Computers.FromSqlRaw($"SELECT * FROM Computers ORDER BY {query}").ToArray();
 
-                    db.Computers.OrderBy(e => EF.Property<Computer>(e, query));
+                    //db.Computers.OrderBy(e => EF.Property<Computer>(e, query));
                 }
 
             }
 
-            ComputersDataGridView.Refresh();
-            ComputersDataGridView.ResetBindings();
-            UsersDataGrid.Refresh();
-            UsersDataGrid.ResetBindings();
+            //ComputersDataGridView.Refresh();
+            //ComputersDataGridView.ResetBindings();
+            //UsersDataGrid.Refresh();
+            //UsersDataGrid.ResetBindings();
         }
 
         private void UsersDataGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -144,7 +203,7 @@ namespace HomeWork.Forms
             {
                 var row = UsersDataGrid.CurrentRow;
 
-                if(row == null) return;
+                if (row == null) return;
 
                 EditorForm.textBox1.Text = row.Cells[0].Value.ToString();
                 EditorForm.textBox2.Text = row.Cells[1].Value.ToString();
@@ -165,11 +224,16 @@ namespace HomeWork.Forms
                 EditorForm.textBox4.Text = row.Cells[0].Value.ToString();
                 EditorForm.textBox5.Text = row.Cells[1].Value.ToString();
                 EditorForm.textBox6.Text = row.Cells[2].Value.ToString();
-                EditorForm.textBox6.Text = row.Cells[3].Value.ToString();
-                EditorForm.textBox8.Text = row.Cells[3].Value.ToString();
+                EditorForm.textBox7.Text = row.Cells[3].Value.ToString();
+                EditorForm.textBox8.Text = row.Cells[4].Value.ToString();
 
                 _currentDataGridViewRowComputers = row;
             }
+        }
+
+        private void UsersDataGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

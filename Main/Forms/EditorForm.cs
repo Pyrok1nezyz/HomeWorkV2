@@ -86,39 +86,39 @@ namespace HomeWork.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             using var db = new MySQLDbContext();
-            var index = db.Users.OrderBy(e => e.Id).LastOrDefault()!.Id;
+            var index = db.GetUsers().OrderBy(e => e.Id).LastOrDefault()!.Id;
             var newIndex = index + 1;
             textBox1.Text = newIndex.ToString();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             using (var db = new MySQLDbContext())
             {
                 long i = 0;
                 long.TryParse(textBox1.Text, out i);
 
-                var user = db.Users.Find(i);
+                var user = db.GetUsers().Find(e => e.Id == i);
 
                 if (user != null)
                 {
                     user.Name = textBox2.Text;
-                    user.Computer = db.Computers.OrderBy(e => e.Id).FirstOrDefault();
+                    user.Computer = db.GetComputers().OrderBy(e => e.Id).FirstOrDefault();
                     user.Password = textBox3.Text;
 
-                    db.Users.Update(user);
-                    await db.SaveChangesAsync();
+                    db.UpdateUser(user);
+                    db.GetUsers();
                 }
                 else
                 {
                     var newUser = new User(textBox2.Text, textBox3.Text)
                     {
                         Id = i,
-                        Computer = db.Computers.OrderBy(e => e.Id).LastOrDefault(),
+                        Computer = db.GetComputers().OrderBy(e => e.Id).LastOrDefault(),
                     };
 
-                    db.Users.Add(newUser);
-                    await db.SaveChangesAsync();
+                    db.AddUser(newUser);
+                    db.GetUsers();
                 }
             }
 
@@ -132,7 +132,7 @@ namespace HomeWork.Forms
                 int i = 0;
                 int.TryParse(textBox4.Text, out i);
 
-                var computer = db.Computers.Find(i);
+                var computer = db.GetComputers().Find(e => e.Id == i);
 
                 if (computer != null)
                 {
@@ -141,8 +141,8 @@ namespace HomeWork.Forms
                     computer.Props = textBox7.Text;
                     computer.Notation = textBox8.Text;
 
-                    db.Update(computer);
-                    await db.SaveChangesAsync();
+                    db.UpdateComputer(computer);
+                    db.GetComputers();
                 }
                 else
                 {
@@ -152,8 +152,8 @@ namespace HomeWork.Forms
                         Props = textBox7.Text,
                         Notation = textBox8.Text
                     };
-                    db.Computers.Add(newCOmp);
-                    await db.SaveChangesAsync();
+                    db.AddComputer(newCOmp);
+                    db.GetComputers();
                 }
             }
 
@@ -165,7 +165,7 @@ namespace HomeWork.Forms
             using var db = new MySQLDbContext();
             var index = 0;
 
-            var lastcomp = db.Computers.OrderBy(e => e.Id).LastOrDefault()!;
+            var lastcomp = db.GetComputers().OrderBy(e => e.Id).LastOrDefault()!;
             if (lastcomp == null)
             {
                 index = 1;

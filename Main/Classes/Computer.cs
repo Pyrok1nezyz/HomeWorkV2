@@ -2,7 +2,7 @@
 
 namespace HomeWork.Classes;
 
-public class Computer
+public class Computer : IComparable
 {
     public Computer(string name, string ip)
     {
@@ -21,8 +21,15 @@ public class Computer
 
     public string? Notation { get; set; }
 
-    //public override string ToString()
-    //{
-    //    return PCName;
-    //}
+    public override string ToString()
+    {
+        return Name;
+    }
+
+    int IComparable.CompareTo(object? obj)
+    {
+        Computer comp = (Computer)obj!;
+
+        return string.Compare(this.Name, comp.Name);
+    }
 }

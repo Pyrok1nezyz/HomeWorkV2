@@ -17,9 +17,7 @@ public class Work
     {
         using (var db = new MySQLDbContext())
         {
-            var userList = db.Users.Where(e => e.Name == name && e.Password == password).ToList();
-
-            foreach (var user in userList)
+            foreach (var user in db.GetUsers())
             {
                 if (user.Name == name && user.Password == password)
                 {
@@ -38,7 +36,7 @@ public class Work
     public static bool TryLogin(string name)
     {
         using var db = new MySQLDbContext();
-        return db.Users.Any(e => e.Name == name);
+        return db.GetUsers().Exists(e => e.Name == name);
     }
 
     //internal void UpdateUsersTable(DataGridView dgv, DataSet dataSet)
