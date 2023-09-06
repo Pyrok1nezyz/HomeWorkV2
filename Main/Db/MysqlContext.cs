@@ -107,7 +107,7 @@ public sealed class MySQLDbContext : IDisposable
         MySqlCommand cmd = new MySqlCommand(query, connection);
         var IsAdded = cmd.ExecuteNonQuery();
         if (IsAdded == 0) throw new Exception("Не удалось добавить юзера в таблицу Users");
-        return cmd.ExecuteNonQuery();
+        return IsAdded;
     }
 
     public int AddUser(User user)
@@ -150,7 +150,7 @@ public sealed class MySQLDbContext : IDisposable
     public int UpdateComputer(Computer computer, MySqlConnection connection)
     {
         var query =
-            $"UPDATE Computers SET Name={computer.Name},Ip={computer.Ip},Notation={computer.Notation},Props={computer.Props} WHERE Id={computer.Id}";
+            $"UPDATE Computers SET Name='{computer.Name}',Ip='{computer.Ip}',Notation='{computer.Notation}',Props='{computer.Props}' WHERE Id='{computer.Id}'";
         var cmd = new MySqlCommand(query, connection);
         var IsUpdated = cmd.ExecuteNonQuery();
         if (IsUpdated == 0)

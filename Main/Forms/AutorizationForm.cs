@@ -1,4 +1,5 @@
-﻿using HomeWork.Classes;
+﻿using System.Text;
+using HomeWork.Classes;
 using HomeWork.Db;
 
 namespace HomeWork.Forms
@@ -7,6 +8,8 @@ namespace HomeWork.Forms
     {
         private int _flagLabel1 = 0;
         int _indexLayout = 0;
+        Random rnd = new Random();
+
 
         public AutorizationForm()
         {
@@ -15,8 +18,8 @@ namespace HomeWork.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 if (_indexLayout == 0)
                 {
                     var isLogged = Work.TryLogin(textBox1.Text, textBox2.Text);
@@ -51,7 +54,6 @@ namespace HomeWork.Forms
                             };
 
                             db.AddUser(user);
-                            db.GetUsers();
                         }
 
                         label4.Text = "Зарегестрирован!";
@@ -65,12 +67,12 @@ namespace HomeWork.Forms
                         Work.Twinkling(label4);
                     }
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //    Application.Exit();
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Application.Exit();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -141,6 +143,76 @@ namespace HomeWork.Forms
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private async void PassGen_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = await GetRandomPassword();
+            textBox2.UseSystemPasswordChar = false;
+        }
+
+        private async Task<string> GetRandomPassword()
+        {
+            const string check = "|!@#$%^&*/'`~";
+            const string check2 = "abcdefghijklmopqrstuvwxyz";
+            const string check3 = "ABCDEFGHIJKLMOPQRSTUYWXYZ";
+
+            StringBuilder password = new StringBuilder();
+
+            for (int i = 0; i < rnd.Next(8, 17); i++)
+            {
+                var symbol = Convert.ToChar(rnd.Next(33, 127));
+                password.Append(symbol);
+            }
+
+            var newpass = password.ToString();
+
+            //проверка на наличие спец символа
+            var IsHaveSpecialSymbol = false;
+            //проверка на наличие литера в верхнем регистре
+            var IsHaveBigLetter = false;
+            //проверка на наличие литера в нижнем регистре
+            var IsHaveSmallLetter = false;
+
+            foreach (var letter in newpass)
+            {
+                foreach (var c1 in check)
+                {
+                    if (letter == c1)
+                    {
+                        IsHaveSpecialSymbol = true;
+                        continue;
+                    }
+                }
+
+                foreach (var c2 in check2)
+                {
+                    if (letter == c2)
+                    {
+                        IsHaveSmallLetter = true;
+                        continue;
+                    }
+                }
+
+                foreach (var c3 in check3)
+                {
+                    if (letter == c3)
+                    {
+                        IsHaveBigLetter = true;
+                        continue;
+                    }
+                }
+            }
+
+            if (IsHaveSmallLetter && IsHaveBigLetter && IsHaveSpecialSymbol)
+            {
+                return newpass;
+
+            }
+            else
+            {
+                return await GetRandomPassword();
+            }
         }
     }
 }
