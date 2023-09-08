@@ -35,6 +35,13 @@ namespace HomeWork.Forms
             UsersTabPageInTables = new TabPage();
             UsersDataGrid = new DataGridView();
             tabControl1 = new TabControl();
+            Stats = new TabPage();
+            statLabel_countOfComputers_text = new Label();
+            statLabel_countOfComputers = new Label();
+            statLabel_countOfUsers_text = new Label();
+            statlabel_countOfUsers = new Label();
+            statlabel_countOfRows_text = new Label();
+            statlabel_countOfRows = new Label();
             button1 = new Button();
             comboBox1 = new ComboBox();
             label1 = new Label();
@@ -43,6 +50,7 @@ namespace HomeWork.Forms
             UsersTabPageInTables.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)UsersDataGrid).BeginInit();
             tabControl1.SuspendLayout();
+            Stats.SuspendLayout();
             SuspendLayout();
             // 
             // ComputersTabPage
@@ -106,6 +114,7 @@ namespace HomeWork.Forms
             tabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControl1.Controls.Add(UsersTabPageInTables);
             tabControl1.Controls.Add(ComputersTabPage);
+            tabControl1.Controls.Add(Stats);
             tabControl1.Location = new Point(0, 47);
             tabControl1.Margin = new Padding(3, 4, 3, 4);
             tabControl1.Name = "tabControl1";
@@ -115,6 +124,79 @@ namespace HomeWork.Forms
             tabControl1.Size = new Size(984, 404);
             tabControl1.TabIndex = 3;
             tabControl1.SelectedIndexChanged += tabControl1_SelectTab;
+            // 
+            // Stats
+            // 
+            Stats.Controls.Add(statLabel_countOfComputers_text);
+            Stats.Controls.Add(statLabel_countOfComputers);
+            Stats.Controls.Add(statLabel_countOfUsers_text);
+            Stats.Controls.Add(statlabel_countOfUsers);
+            Stats.Controls.Add(statlabel_countOfRows_text);
+            Stats.Controls.Add(statlabel_countOfRows);
+            Stats.Location = new Point(4, 29);
+            Stats.Name = "Stats";
+            Stats.Padding = new Padding(3);
+            Stats.Size = new Size(976, 371);
+            Stats.TabIndex = 3;
+            Stats.Text = "Статистика";
+            Stats.UseVisualStyleBackColor = true;
+            // 
+            // statLabel_countOfComputers_text
+            // 
+            statLabel_countOfComputers_text.AutoSize = true;
+            statLabel_countOfComputers_text.Location = new Point(8, 215);
+            statLabel_countOfComputers_text.Name = "statLabel_countOfComputers_text";
+            statLabel_countOfComputers_text.Size = new Size(50, 20);
+            statLabel_countOfComputers_text.TabIndex = 5;
+            statLabel_countOfComputers_text.Text = "label2";
+            // 
+            // statLabel_countOfComputers
+            // 
+            statLabel_countOfComputers.AutoSize = true;
+            statLabel_countOfComputers.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            statLabel_countOfComputers.Location = new Point(8, 166);
+            statLabel_countOfComputers.Name = "statLabel_countOfComputers";
+            statLabel_countOfComputers.Size = new Size(343, 28);
+            statLabel_countOfComputers.TabIndex = 4;
+            statLabel_countOfComputers.Text = "Общее количество Компьютеров";
+            // 
+            // statLabel_countOfUsers_text
+            // 
+            statLabel_countOfUsers_text.AutoSize = true;
+            statLabel_countOfUsers_text.Location = new Point(8, 131);
+            statLabel_countOfUsers_text.Name = "statLabel_countOfUsers_text";
+            statLabel_countOfUsers_text.Size = new Size(50, 20);
+            statLabel_countOfUsers_text.TabIndex = 3;
+            statLabel_countOfUsers_text.Text = "label2";
+            // 
+            // statlabel_countOfUsers
+            // 
+            statlabel_countOfUsers.AutoSize = true;
+            statlabel_countOfUsers.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            statlabel_countOfUsers.Location = new Point(8, 82);
+            statlabel_countOfUsers.Name = "statlabel_countOfUsers";
+            statlabel_countOfUsers.Size = new Size(283, 28);
+            statlabel_countOfUsers.TabIndex = 2;
+            statlabel_countOfUsers.Text = "Общее количество Юзеров";
+            // 
+            // statlabel_countOfRows_text
+            // 
+            statlabel_countOfRows_text.AutoSize = true;
+            statlabel_countOfRows_text.Location = new Point(8, 47);
+            statlabel_countOfRows_text.Name = "statlabel_countOfRows_text";
+            statlabel_countOfRows_text.Size = new Size(50, 20);
+            statlabel_countOfRows_text.TabIndex = 1;
+            statlabel_countOfRows_text.Text = "label2";
+            // 
+            // statlabel_countOfRows
+            // 
+            statlabel_countOfRows.AutoSize = true;
+            statlabel_countOfRows.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            statlabel_countOfRows.Location = new Point(8, 3);
+            statlabel_countOfRows.Name = "statlabel_countOfRows";
+            statlabel_countOfRows.Size = new Size(433, 28);
+            statlabel_countOfRows.TabIndex = 0;
+            statlabel_countOfRows.Text = "Общее количество записей в базе данных";
             // 
             // button1
             // 
@@ -165,6 +247,8 @@ namespace HomeWork.Forms
             UsersTabPageInTables.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)UsersDataGrid).EndInit();
             tabControl1.ResumeLayout(false);
+            Stats.ResumeLayout(false);
+            Stats.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -180,5 +264,12 @@ namespace HomeWork.Forms
         private Button button1;
         private ComboBox comboBox1;
         private Label label1;
+        private TabPage Stats;
+        private Label statlabel_countOfUsers;
+        private Label statlabel_countOfRows_text;
+        private Label statlabel_countOfRows;
+        private Label statLabel_countOfComputers;
+        private Label statLabel_countOfUsers_text;
+        private Label statLabel_countOfComputers_text;
     }
 }

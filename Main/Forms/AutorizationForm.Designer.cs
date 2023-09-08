@@ -96,7 +96,6 @@
             textBox1.PlaceholderText = "Login";
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 15;
-            textBox1.TextChanged += textBox1_TextChanged;
             textBox1.KeyDown += textBox1_KeyDown;
             // 
             // ChangeText

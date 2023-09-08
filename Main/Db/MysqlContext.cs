@@ -6,7 +6,7 @@ namespace HomeWork.Db;
 
 public sealed class MySQLDbContext : IDisposable
 {
-    private MySqlConnection connection;
+    protected internal MySqlConnection connection;
     public MySQLDbContext()
     {
         string connectionString = "server=localhost;user=root;password=telega123;database=usersdb;";

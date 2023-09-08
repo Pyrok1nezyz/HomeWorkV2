@@ -1,6 +1,8 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using HomeWork.Classes;
 using HomeWork.Db;
+using MySql.Data.MySqlClient;
 
 namespace HomeWork.Forms
 {
@@ -20,6 +22,8 @@ namespace HomeWork.Forms
             {
                 comboBox1.Items.Add(variable.Name);
             }
+
+            UpdateStatsLabels();
         }
 
         internal static BindingSource PSource = new BindingSource();
@@ -73,14 +77,14 @@ namespace HomeWork.Forms
         {
             if (EditorForm == null)
             {
-                if (tabControl1.SelectedTab.Text.Contains("Комп"))
+                if (tabControl1.SelectedTab.Text == ("Компы"))
                 {
                     Debug.WriteLine("asd123");
                     var form = new EditorForm(this, ComputersDataGridView);
                     EditorForm = form;
                     form.Show();
                 }
-                else if (tabControl1.SelectedTab.Text.Contains("Юзер"))
+                else if (tabControl1.SelectedTab.Text == ("Юзеры"))
                 {
                     Debug.WriteLine("zxc321");
                     var form = new EditorForm(this, UsersDataGrid);
@@ -112,7 +116,7 @@ namespace HomeWork.Forms
             }
             else
             {
-                if (tabControl1.SelectedTab.Text.Contains("Юзеры"))
+                if (tabControl1.SelectedTab.Text == ("Юзеры"))
                 {
                     using var db = new MySQLDbContext();
 
@@ -145,7 +149,7 @@ namespace HomeWork.Forms
 
                     //UsersDataGrid.DataSource = db.Users.FromSqlRaw($"SELECT * FROM Users ORDER BY {query}").ToArray();
                 }
-                else
+                else if (tabControl1.SelectedTab.Text == "Компы")
                 {
                     using var db = new MySQLDbContext();
 
@@ -189,6 +193,7 @@ namespace HomeWork.Forms
                     //db.Computers.OrderBy(e => EF.Property<Computer>(e, query));
                 }
 
+
             }
 
             //ComputersDataGridView.Refresh();
@@ -199,7 +204,7 @@ namespace HomeWork.Forms
 
         private void UsersDataGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void ComputersDataGridViewCellEnter(object sender, DataGridViewCellEventArgs e)
@@ -248,6 +253,33 @@ namespace HomeWork.Forms
                 }
 
                 _currentDataGridViewRowUsers = row;
+            }
+        }
+
+        internal void UpdateStatsLabels()
+        {
+            using (var db = new MySQLDbContext())
+            {
+                var query = "";
+                var cmd = new MySqlCommand(query, db.connection);
+                int n = 0;
+                int rows = 0;
+
+                query = "SELECT COUNT(*) FROM Users";
+                cmd = new MySqlCommand(query, db.connection);
+                var count = cmd.ExecuteScalar().ToString();
+                int.TryParse(count, out n);
+                rows = rows + n;
+                statLabel_countOfUsers_text.Text = count;
+
+                query = "SELECT COUNT(*) FROM Computers";
+                cmd = new MySqlCommand(query, db.connection);
+                count = cmd.ExecuteScalar().ToString();
+                int.TryParse(count, out n);
+                rows = rows + n;
+                statLabel_countOfComputers_text.Text = count;
+
+                statlabel_countOfRows_text.Text = rows.ToString();
             }
         }
     }

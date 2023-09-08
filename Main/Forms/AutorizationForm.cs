@@ -139,12 +139,6 @@ namespace HomeWork.Forms
             }
         }
 
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private async void PassGen_Click(object sender, EventArgs e)
         {
             textBox2.Text = await GetRandomPassword();
