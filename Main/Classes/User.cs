@@ -17,4 +17,5 @@ public class User
     public string Password { get; set; }
 
     public Computer? Computer { get; set; }
+    public bool IsWorker { get; set; }
 }
