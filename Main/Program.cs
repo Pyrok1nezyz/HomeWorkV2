@@ -1,4 +1,3 @@
-using HomeWork.Forms;
 
 namespace HomeWork
 {
@@ -13,7 +12,8 @@ namespace HomeWork
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new AutorizationForm());
+            //Application.Run(new AutorizationForm());
+            Application.Run(new HQForm());
         }
     }
 }

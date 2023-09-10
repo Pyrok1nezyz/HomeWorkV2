@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using HomeWork.Classes;
 using HomeWork.Db;
 using MySql.Data.MySqlClient;
