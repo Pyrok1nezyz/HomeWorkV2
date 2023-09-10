@@ -1,4 +1,6 @@
 
+using HomeWork.Db;
+
 namespace HomeWork
 {
     internal static class Program
@@ -12,8 +14,9 @@ namespace HomeWork
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            new MySQLDbContext();
             //Application.Run(new AutorizationForm());
-            Application.Run(new HQForm());
+            Application.Run(new MarketForm());
         }
     }
 }
