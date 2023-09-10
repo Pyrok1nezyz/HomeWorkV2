@@ -182,32 +182,53 @@ public sealed class MySQLDbContext : IDisposable
                         {
                             Id = reader.GetInt32(0),
                             Name = reader.GetString(1),
-                            Price = reader.GetInt32(3),
-                            Count = reader.GetInt32(4),
-                            IsForceBuy = Convert.ToBoolean(reader.GetBoolean(5)),
-                            Ids_CountryOfDeliverys = GetListCountrys(reader.GetString(6)),
-                            IsDiscounted = Convert.ToBoolean(reader.GetInt32(7)),
-                            IsDeleted = Convert.ToBoolean(reader.GetInt32(8)),
-                            IsHided = Convert.ToBoolean(reader.GetInt32(9)),
-                            Id_Byer = reader.GetInt32(10)
+                            Price = reader.GetInt32(4),
+                            Count = reader.GetInt32(5),
+                            IsForceBuy = Convert.ToBoolean(reader.GetBoolean(6)),
+                            Ids_CountryOfDeliverys = GetListCountrys(reader.GetString(7)),
+                            IsDiscounted = Convert.ToBoolean(reader.GetInt32(8)),
+                            IsDeleted = Convert.ToBoolean(reader.GetInt32(9)),
+                            IsHided = Convert.ToBoolean(reader.GetInt32(10)),
+                            Id_Byer = reader.GetInt32(11)
                         };
                     }
                     else
                     {
-                        item = new Item()
+                        if (reader.IsDBNull(3))
                         {
-                            Id = reader.GetInt32(0),
-                            Name = reader.GetString(1),
-                            Category = categories.Find(e => e.Id == reader.GetInt32(2)),
-                            Price = reader.GetInt32(3),
-                            Count = reader.GetInt32(4),
-                            IsForceBuy = Convert.ToBoolean(reader.GetBoolean(5)),
-                            Ids_CountryOfDeliverys = GetListCountrys(reader.GetString(6)),
-                            IsDiscounted = Convert.ToBoolean(reader.GetInt32(7)),
-                            IsDeleted = Convert.ToBoolean(reader.GetInt32(8)),
-                            IsHided = Convert.ToBoolean(reader.GetInt32(9)),
-                            Id_Byer = reader.GetInt32(10)
-                        };
+                            item = new Item()
+                            {
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                MainCategory = categories.Find(e => e.Id == reader.GetInt32(2)),
+                                Price = reader.GetInt32(4),
+                                Count = reader.GetInt32(5),
+                                IsForceBuy = Convert.ToBoolean(reader.GetBoolean(6)),
+                                Ids_CountryOfDeliverys = GetListCountrys(reader.GetString(7)),
+                                IsDiscounted = Convert.ToBoolean(reader.GetInt32(8)),
+                                IsDeleted = Convert.ToBoolean(reader.GetInt32(9)),
+                                IsHided = Convert.ToBoolean(reader.GetInt32(10)),
+                                Id_Byer = reader.GetInt32(11)
+                            };
+                        }
+                        else
+                        {
+                            item = new Item()
+                            {
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                MainCategory = categories.Find(e => e.Id == reader.GetInt32(2)),
+                                SubCategory = categories.Find(e => e.Id == reader.GetInt32(3)),
+                                Price = reader.GetInt32(4),
+                                Count = reader.GetInt32(5),
+                                IsForceBuy = Convert.ToBoolean(reader.GetBoolean(6)),
+                                Ids_CountryOfDeliverys = GetListCountrys(reader.GetString(7)),
+                                IsDiscounted = Convert.ToBoolean(reader.GetInt32(8)),
+                                IsDeleted = Convert.ToBoolean(reader.GetInt32(9)),
+                                IsHided = Convert.ToBoolean(reader.GetInt32(10)),
+                                Id_Byer = reader.GetInt32(11)
+                            };
+                        }
                     }
 
                     
@@ -262,9 +283,30 @@ public sealed class MySQLDbContext : IDisposable
 
     public int AddItem(Item item, MySqlConnection connection)
     {
-        var query =
-            $"INSERT INTO items (Name, Id_Category, Price, Count, IsForceBuy, ids_CountryOfDeliverys, IsDiscounted, IsDeleted, isHided, IdByer) " +
-            $"VALUES ('{item.Name}','{item.Category!.Id}','{item.Price}','{item.Count}','{Convert.ToInt32(item.IsForceBuy)}','{string.Join('|', item.Ids_CountryOfDeliverys!)}','{Convert.ToInt32(item.IsDiscounted)}','{Convert.ToInt32(item.IsDeleted)}','{Convert.ToInt32(item.IsHided)}','{item.Id_Byer}');";
+        var query = "";
+        if (item.MainCategory == null)
+        {
+            query =
+                $"INSERT INTO items (Name, Price, Count, IsForceBuy, ids_CountryOfDeliverys, IsDiscounted, IsDeleted, isHided, IdByer) " +
+                $"VALUES ('{item.Name}','{item.Price}','{item.Count}','{Convert.ToInt32(item.IsForceBuy)}','{string.Join('|', item.Ids_CountryOfDeliverys!)}','{Convert.ToInt32(item.IsDiscounted)}','{Convert.ToInt32(item.IsDeleted)}','{Convert.ToInt32(item.IsHided)}','{item.Id_Byer}');";
+        }
+        else
+        {
+            if (item.SubCategory != null)
+            {
+                query =
+                    $"INSERT INTO items (Name, Id_MainCategory, Id_SubCategory, Price, Count, IsForceBuy, ids_CountryOfDeliverys, IsDiscounted, IsDeleted, isHided, IdByer) " +
+                    $"VALUES ('{item.Name}','{item.MainCategory!.Id}','{item.SubCategory!.Id}','{item.Price}','{item.Count}','{Convert.ToInt32(item.IsForceBuy)}','{string.Join('|', item.Ids_CountryOfDeliverys!)}','{Convert.ToInt32(item.IsDiscounted)}','{Convert.ToInt32(item.IsDeleted)}','{Convert.ToInt32(item.IsHided)}','{item.Id_Byer}');";
+            }
+            else
+            {
+                query =
+                    $"INSERT INTO items (Name, Id_MainCategory, Price, Count, IsForceBuy, ids_CountryOfDeliverys, IsDiscounted, IsDeleted, isHided, IdByer) " +
+                    $"VALUES ('{item.Name}','{item.MainCategory!.Id}','{item.Price}','{item.Count}','{Convert.ToInt32(item.IsForceBuy)}','{string.Join('|', item.Ids_CountryOfDeliverys!)}','{Convert.ToInt32(item.IsDiscounted)}','{Convert.ToInt32(item.IsDeleted)}','{Convert.ToInt32(item.IsHided)}','{item.Id_Byer}');";
+            }
+        }
+
+
 
         MySqlCommand cmd = new MySqlCommand(query, connection);
         var IsAdded = cmd.ExecuteNonQuery();

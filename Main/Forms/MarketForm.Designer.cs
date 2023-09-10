@@ -193,6 +193,7 @@
             pictureBox1.Size = new Size(351, 83);
             pictureBox1.TabIndex = 14;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // hqButton_Generator
             // 
@@ -256,7 +257,7 @@
             Controls.Add(hqButton_PC);
             MinimumSize = new Size(1253, 572);
             Name = "MarketForm";
-            Text = "HQForm";
+            Text = "ДНС Магазин";
             Load += MarketForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

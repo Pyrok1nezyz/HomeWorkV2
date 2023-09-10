@@ -46,7 +46,7 @@ namespace HomeWork
             var item = new Item();
             item.Id = 0;
             item.Name = "";
-            item.Category = new Category();
+            item.MainCategory = new Category();
             item.Price = 0;
             item.Count = 0;
             item.IsForceBuy = true;
@@ -63,8 +63,22 @@ namespace HomeWork
             //Name
             item.Name = await GetRandomName();
 
+            //SubCategory
+            if (Convert.ToBoolean(rnd.Next(0, 2)))
+            {
+                var list = _categories.Where(e => e.IsMain == false).ToList();
+                item.SubCategory = list[rnd.Next(1, list.Count)];
+            }
+
             //Category
-            item.Category = _categories[rnd.Next(_categories.FirstOrDefault()!.Id, _categories.Count)];
+            if (item.SubCategory == null)
+            {
+                item.MainCategory = _categories[rnd.Next(_categories.FirstOrDefault()!.Id, _categories.Count)];
+            }
+            else
+            {
+                item.MainCategory = GetMainCategoryBySubCategory(item.SubCategory);
+            }
 
             //Price
             item.Price = rnd.Next(1, 10000);
@@ -121,6 +135,19 @@ namespace HomeWork
 
         }
 
+        private Category GetMainCategoryBySubCategory(Category category)
+        {
+            var MainCategory = _categories.Find(e => e.Id == category.id_parentCategory);
+            if (MainCategory!.IsMain)
+            {
+                return MainCategory;
+            }
+            else
+            {
+                return GetMainCategoryBySubCategory(MainCategory);
+            }
+        }
+
         private async Task<string> GetRandomName()
         {
             const string check3 = "ABCDEFGHIJKLMOPQRSTUYWXYZ";
@@ -174,61 +201,61 @@ namespace HomeWork
 
         private void hqButton_PC_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.Category!.Id == 1).ToList());
+            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 1).ToList());
             UpdateDataGridView(list);
         }
 
         private void hqButton_Phones_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.Category!.Id == 2).ToList());
+            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 2).ToList());
             UpdateDataGridView(list);
         }
 
         private void hqButton_TV_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.Category!.Id == 3).ToList());
+            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 3).ToList());
             UpdateDataGridView(list);
         }
 
         private void hqButton_Beatuy_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.Category!.Id == 4).ToList());
+            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 4).ToList());
             UpdateDataGridView(list);
         }
 
         private void hqButton_OfficeFurniture_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.Category!.Id == 5).ToList());
+            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 5).ToList());
             UpdateDataGridView(list);
         }
 
         private void hqButton_Accesories_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.Category!.Id == 6).ToList());
+            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 6).ToList());
             UpdateDataGridView(list);
         }
 
         private void hqButton_NetDevices_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.Category!.Id == 7).ToList());
+            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 7).ToList());
             UpdateDataGridView(list);
         }
 
         private void hqButton_Home_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.Category!.Id == 8).ToList());
+            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 8).ToList());
             UpdateDataGridView(list);
         }
 
         private void hqButton_CarAccesoryes_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.Category!.Id == 9).ToList());
+            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 9).ToList());
             UpdateDataGridView(list);
         }
 
         private void hqButton_GardenTools_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.Category!.Id == 10).ToList());
+            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 10).ToList());
             UpdateDataGridView(list);
         }
 
@@ -248,6 +275,9 @@ namespace HomeWork
 
         }
 
-
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            hqButton_AllItems_Click(sender, e);
+        }
     }
 }

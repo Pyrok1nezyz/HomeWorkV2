@@ -11,7 +11,17 @@
 
         public int Id => item.Id;
         public string Name => item.Name;
-        public string Category => item.Category!.ToString();
+        public string MainCategory => item.MainCategory!.ToString();
+        public string? SubCategory
+        {
+            get
+            {
+                if (item.SubCategory != null)
+                    return item.SubCategory!.ToString();
+                else return null;
+            }
+        }
+
         public int Price => item.Price;
         public int Count => item.Count;
         public bool IsForceBuy => item.IsForceBuy;

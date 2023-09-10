@@ -4,7 +4,8 @@
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public Category? Category { get; set; }
+        public Category? MainCategory { get; set; }
+        public Category? SubCategory { get; set; }
         public int Price { get; set; }
         public int Count { get; set; }
         public bool IsForceBuy { get; set; }
