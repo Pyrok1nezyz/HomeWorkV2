@@ -106,6 +106,7 @@ namespace HomeWork.Forms
             UsersDataGrid.RowTemplate.Height = 29;
             UsersDataGrid.Size = new Size(970, 363);
             UsersDataGrid.TabIndex = 0;
+            UsersDataGrid.CellContentClick += UsersDataGrid_CellContentClick;
             UsersDataGrid.CellEnter += UsersDataGrid_CellEnter;
             UsersDataGrid.RowEnter += UsersDataGrid_RowEnter;
             // 
@@ -240,7 +241,6 @@ namespace HomeWork.Forms
             Name = "TablesForm";
             RightToLeft = RightToLeft.No;
             Text = "HomeWorkN1";
-            FormClosing += HomeWorkN1_FormClosing;
             Load += HomeWorkN1_Load;
             ComputersTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ComputersDataGridView).EndInit();

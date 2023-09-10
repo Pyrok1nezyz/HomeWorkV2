@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using HomeWork.Classes;
 using HomeWork.Db;
 using MySql.Data.MySqlClient;
@@ -25,9 +24,6 @@ namespace HomeWork.Forms
 
             UpdateStatsLabels();
         }
-
-        internal static BindingSource PSource = new BindingSource();
-        internal static BindingSource BSource = new BindingSource();
 
         internal void HomeWorkN1_Load(object sender, EventArgs e)
         {
@@ -231,12 +227,15 @@ namespace HomeWork.Forms
             {
                 var row = UsersDataGrid.CurrentRow;
                 using var db = new MySQLDbContext();
+                bool n = false;
 
                 if (row == null) return;
 
                 EditorForm.textBox1.Text = row.Cells[0].Value.ToString();
                 EditorForm.textBox2.Text = row.Cells[1].Value.ToString();
                 EditorForm.textBox3.Text = row.Cells[2].Value.ToString();
+                bool.TryParse(row.Cells[3].Value.ToString(), out n);
+                EditorForm.checkBox1.Checked = n;
 
                 //list of computers
                 EditorForm.comboBox1.Items.Clear();
@@ -281,6 +280,11 @@ namespace HomeWork.Forms
 
                 statlabel_countOfRows_text.Text = rows.ToString();
             }
+        }
+
+        private void UsersDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
