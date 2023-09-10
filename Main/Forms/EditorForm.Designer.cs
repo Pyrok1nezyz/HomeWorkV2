@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            comboBox1 = new ComboBox();
+            button1 = new Button();
+            button2 = new Button();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
             groupBox2 = new GroupBox();
             button3 = new Button();
             button4 = new Button();
@@ -37,33 +43,79 @@
             textBox4 = new TextBox();
             textBox5 = new TextBox();
             textBox6 = new TextBox();
-            checkBox1 = new CheckBox();
-            comboBox1 = new ComboBox();
-            button1 = new Button();
-            button2 = new Button();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(checkBox1);
             groupBox1.Controls.Add(comboBox1);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(button2);
             groupBox1.Controls.Add(textBox3);
             groupBox1.Controls.Add(textBox2);
             groupBox1.Controls.Add(textBox1);
-            groupBox1.Location = new Point(12, 12);
+            groupBox1.Location = new Point(92, 51);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(789, 163);
+            groupBox1.Size = new Size(642, 163);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Юзеры";
             groupBox1.Enter += groupBox1_Enter;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(394, 25);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(227, 28);
+            comboBox1.TabIndex = 8;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(262, 59);
+            button1.Name = "button1";
+            button1.Size = new Size(125, 29);
+            button1.TabIndex = 3;
+            button1.Text = "Сохранить";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(262, 94);
+            button2.Name = "button2";
+            button2.Size = new Size(125, 29);
+            button2.TabIndex = 7;
+            button2.Text = "Добавить";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(263, 26);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(125, 27);
+            textBox3.TabIndex = 2;
+            textBox3.TextChanged += textBox3_TextChanged;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(132, 26);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(125, 27);
+            textBox2.TabIndex = 1;
+            textBox2.TextChanged += textBox2_TextChanged;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(1, 26);
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 0;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // groupBox2
             // 
@@ -74,9 +126,9 @@
             groupBox2.Controls.Add(textBox4);
             groupBox2.Controls.Add(textBox5);
             groupBox2.Controls.Add(textBox6);
-            groupBox2.Location = new Point(12, 12);
+            groupBox2.Location = new Point(12, 9);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(789, 297);
+            groupBox2.Size = new Size(801, 300);
             groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
             groupBox2.Text = "Компьютеры";
@@ -142,70 +194,6 @@
             textBox6.TabIndex = 4;
             textBox6.TextChanged += textBox6_TextChanged;
             // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(457, 64);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(166, 24);
-            checkBox1.TabIndex = 9;
-            checkBox1.Text = "Работник магазина";
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(457, 25);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(226, 28);
-            comboBox1.TabIndex = 8;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(325, 59);
-            button1.Name = "button1";
-            button1.Size = new Size(125, 29);
-            button1.TabIndex = 3;
-            button1.Text = "Сохранить";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(325, 94);
-            button2.Name = "button2";
-            button2.Size = new Size(125, 29);
-            button2.TabIndex = 7;
-            button2.Text = "Добавить";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(326, 26);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 2;
-            textBox3.TextChanged += textBox3_TextChanged;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(195, 26);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 1;
-            textBox2.TextChanged += textBox2_TextChanged;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(64, 26);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 0;
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
             // EditorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -242,6 +230,5 @@
         internal Button button3;
         internal Button button4;
         internal ComboBox comboBox1;
-        internal CheckBox checkBox1;
     }
 }
