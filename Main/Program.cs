@@ -1,5 +1,4 @@
-
-using HomeWork.Db;
+using HomeWork.Forms;
 
 namespace HomeWork
 {
@@ -14,9 +13,7 @@ namespace HomeWork
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            new MySQLDbContext();
-            //Application.Run(new AutorizationForm());
-            Application.Run(new MarketForm());
+            Application.Run(new AutorizationForm());
         }
     }
 }

@@ -112,7 +112,6 @@ namespace HomeWork.Forms
                     user.Name = textBox2.Text;
                     user.Computer = (Computer)comboBox1.SelectedItem;
                     user.Password = textBox3.Text;
-                    user.IsWorker = checkBox1.Checked;
 
                     db.UpdateUser(user);
                     db.GetUsers();
@@ -122,7 +121,6 @@ namespace HomeWork.Forms
                     var newUser = new User(textBox2.Text, textBox3.Text)
                     {
                         Id = i,
-                        IsWorker = checkBox1.Checked,
                         Computer = (Computer)comboBox1.SelectedItem
                     };
 
@@ -199,10 +197,6 @@ namespace HomeWork.Forms
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
         }
     }
 }
