@@ -1,9 +1,9 @@
 using System.Diagnostics;
-using HomeWork.Classes;
-using HomeWork.Db;
 using MySql.Data.MySqlClient;
+using PetProject.Core.Entities;
+using PetProject.DB.Db;
 
-namespace HomeWork.Forms
+namespace PetProject.Forms.Forms
 {
     public partial class TablesForm : Form
     {

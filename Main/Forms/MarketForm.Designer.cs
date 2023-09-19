@@ -1,4 +1,4 @@
-﻿namespace HomeWork
+﻿namespace PetProject.Forms.Forms
 {
     partial class MarketForm
     {

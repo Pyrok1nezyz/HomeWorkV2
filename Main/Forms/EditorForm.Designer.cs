@@ -1,4 +1,4 @@
-﻿namespace HomeWork.Forms
+﻿namespace PetProject.Forms.Forms
 {
     partial class EditorForm
     {

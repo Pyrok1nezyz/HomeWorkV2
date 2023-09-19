@@ -1,7 +1,7 @@
-﻿using HomeWork.Classes;
-using HomeWork.Db;
+﻿using PetProject.Core.Entities;
+using PetProject.DB.Db;
 
-namespace HomeWork.Forms
+namespace PetProject.Forms.Forms
 {
     public partial class EditorForm : Form
     {
@@ -57,7 +57,7 @@ namespace HomeWork.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             using var db = new MySQLDbContext();
-            var index = db.GetUsers().OrderBy(e => e.Id).LastOrDefault()!.Id;
+            var index = db.GetUsers().OrderBy(e => e.Id).LastOrDefault().Id;
             var newIndex = index + 1;
             textBox1.Text = newIndex.ToString();
         }
@@ -138,7 +138,7 @@ namespace HomeWork.Forms
             using var db = new MySQLDbContext();
             var index = 0;
 
-            var lastcomp = db.GetComputers().OrderBy(e => e.Id).LastOrDefault()!;
+            var lastcomp = db.GetComputers().OrderBy(e => e.Id).LastOrDefault();
             if (lastcomp == null)
             {
                 index = 1;

@@ -1,6 +1,6 @@
-﻿using HomeWork.Classes;
+﻿using PetProject.Core.Entities;
 
-namespace HomeWork.Forms
+namespace PetProject.Forms.Forms
 {
     partial class TablesForm
     {

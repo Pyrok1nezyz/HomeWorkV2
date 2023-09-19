@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using HomeWork.Classes;
-using HomeWork.Db;
+using PetProject.Core.Entities;
+using PetProject.DB.Db;
 
-namespace HomeWork.Forms
+namespace PetProject.Forms.Forms
 {
     public partial class AutorizationForm : Form
     {

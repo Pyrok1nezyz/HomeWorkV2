@@ -1,6 +1,6 @@
-﻿using HomeWork.Db;
+﻿using PetProject.DB.Db;
 
-namespace HomeWork;
+namespace PetProject.Forms;
 
 public class Work
 {
@@ -17,14 +17,12 @@ public class Work
 
     public static bool TryLogin(string name, string password)
     {
-        using (var db = new MySQLDbContext())
+        using var db = new MySQLDbContext();
+        foreach (var user in db.GetUsers())
         {
-            foreach (var user in db.GetUsers())
+            if (user.Name == name && user.Password == password)
             {
-                if (user.Name == name && user.Password == password)
-                {
-                    return true;
-                }
+                return true;
             }
         }
 

@@ -1,10 +1,8 @@
-using System.ComponentModel;
-using HomeWork.Classes;
 using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Cms;
-using Computer = HomeWork.Classes.Computer;
+using PetProject.Core.Entities;
+using Computer = PetProject.Core.Entities.Computer;
 
-namespace HomeWork.Db;
+namespace PetProject.DB.Db;
 
 public sealed class MySQLDbContext : IDisposable
 {
@@ -86,7 +84,7 @@ public sealed class MySQLDbContext : IDisposable
                             IsMain = Convert.ToBoolean(reader.GetValue(3))
                         };
 
-                        if (category.id_parentCategory == null && category.IsMain == false)
+                        if (category.ParentId == null && category.IsMain == false)
                             throw new Exception(
                                 "Ошибка парсинга категории, категория не имеет родителя и IsMain = false");
                     }
@@ -96,11 +94,11 @@ public sealed class MySQLDbContext : IDisposable
                         {
                             Id = reader.GetInt32(0),
                             Name = reader.GetString(1),
-                            id_parentCategory = reader.GetInt32(2),
+                            ParentId = reader.GetInt32(2),
                             IsMain = Convert.ToBoolean(reader.GetValue(3))
                         };
 
-                        if(category.id_parentCategory != null && category.IsMain == true) 
+                        if(category.ParentId != null && category.IsMain == true) 
                             throw new Exception("Ошибка парсинга категории, категория имеет родителя и IsMain = true");
                     }
 
@@ -182,11 +180,11 @@ public sealed class MySQLDbContext : IDisposable
                             Price = reader.GetInt32(4),
                             Count = reader.GetInt32(5),
                             IsForceBuy = Convert.ToBoolean(reader.GetBoolean(6)),
-                            Ids_CountryOfDeliverys = GetListCountrys(reader.GetString(7)),
+                            CountryId = GetListCountrys(reader.GetString(7)),
                             IsDiscounted = Convert.ToBoolean(reader.GetInt32(8)),
                             IsDeleted = Convert.ToBoolean(reader.GetInt32(9)),
                             IsHided = Convert.ToBoolean(reader.GetInt32(10)),
-                            Id_Byer = reader.GetInt32(11)
+                            CustomerId = reader.GetInt32(11)
                         };
                     }
                     else
@@ -201,11 +199,11 @@ public sealed class MySQLDbContext : IDisposable
                                 Price = reader.GetInt32(4),
                                 Count = reader.GetInt32(5),
                                 IsForceBuy = Convert.ToBoolean(reader.GetBoolean(6)),
-                                Ids_CountryOfDeliverys = GetListCountrys(reader.GetString(7)),
+                                CountryId = GetListCountrys(reader.GetString(7)),
                                 IsDiscounted = Convert.ToBoolean(reader.GetInt32(8)),
                                 IsDeleted = Convert.ToBoolean(reader.GetInt32(9)),
                                 IsHided = Convert.ToBoolean(reader.GetInt32(10)),
-                                Id_Byer = reader.GetInt32(11)
+                                CustomerId = reader.GetInt32(11)
                             };
                         }
                         else
@@ -219,11 +217,11 @@ public sealed class MySQLDbContext : IDisposable
                                 Price = reader.GetInt32(4),
                                 Count = reader.GetInt32(5),
                                 IsForceBuy = Convert.ToBoolean(reader.GetBoolean(6)),
-                                Ids_CountryOfDeliverys = GetListCountrys(reader.GetString(7)),
+                                CountryId = GetListCountrys(reader.GetString(7)),
                                 IsDiscounted = Convert.ToBoolean(reader.GetInt32(8)),
                                 IsDeleted = Convert.ToBoolean(reader.GetInt32(9)),
                                 IsHided = Convert.ToBoolean(reader.GetInt32(10)),
-                                Id_Byer = reader.GetInt32(11)
+                                CustomerId = reader.GetInt32(11)
                             };
                         }
                     }
@@ -261,7 +259,7 @@ public sealed class MySQLDbContext : IDisposable
     {
         var categories = new MySQLDbContext().GetCategories();
 
-        if (categories.Any(e => e.Id == category.id_parentCategory))
+        if (categories.Any(e => e.Id == category.ParentId))
         {
             throw new Exception("Отсуствует зависимость: не обнаружена родительская категория");
         }
@@ -270,7 +268,7 @@ public sealed class MySQLDbContext : IDisposable
             $"INSERT INTO categories (Name, CategoryId, IsMain) VALUES (@Name,@Id_parentCategory,@IsMain);";
         var cmd = new MySqlCommand(query, connection);
         cmd.Parameters.Add(new MySqlParameter("@Name", category.Name));
-        cmd.Parameters.Add(new MySqlParameter("@Id_parentCategory", category.id_parentCategory));
+        cmd.Parameters.Add(new MySqlParameter("@Id_parentCategory", category.ParentId));
         cmd.Parameters.Add(new MySqlParameter("@IsMain", Convert.ToInt32(category.IsMain)));
 
         var IsAdded = cmd.ExecuteNonQuery();
@@ -303,11 +301,11 @@ public sealed class MySQLDbContext : IDisposable
         cmd.Parameters.Add(new MySqlParameter("@Count", item.Count));
         cmd.Parameters.Add(new MySqlParameter("@IsForceBuy", Convert.ToInt32(item.IsForceBuy)));
         cmd.Parameters.Add(new MySqlParameter("@Ids_CountryOfDeliverys",
-            string.Join('|', item.Ids_CountryOfDeliverys)));
+            string.Join('|', item.CountryId)));
         cmd.Parameters.Add(new MySqlParameter("@IsDiscounted", Convert.ToInt32(item.IsDiscounted)));
         cmd.Parameters.Add(new MySqlParameter("@IsDeleted", Convert.ToInt32(item.IsDeleted)));
         cmd.Parameters.Add(new MySqlParameter("@IsHided", Convert.ToInt32(item.IsHided)));
-        cmd.Parameters.Add(new MySqlParameter("@Id_Byer", item.Id_Byer));
+        cmd.Parameters.Add(new MySqlParameter("@Id_Byer", item.CustomerId));
 
         var IsAdded = cmd.ExecuteNonQuery();
         if (IsAdded == 0) throw new Exception("Не удалось добавить товар в таблицу товаров");

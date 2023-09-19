@@ -1,9 +1,9 @@
 ﻿using System.Text;
-using HomeWork.Classes;
-using HomeWork.Db;
-using HomeWork.Forms;
+using PetProject.Core.Domain;
+using PetProject.Core.Entities;
+using PetProject.DB.Db;
 
-namespace HomeWork
+namespace PetProject.Forms.Forms
 {
     public partial class MarketForm : Form
     {
@@ -38,7 +38,7 @@ namespace HomeWork
         private async void hqButton_Generator_Click(object sender, EventArgs e)
         {
             var item = new Item();
-            item.Ids_CountryOfDeliverys = new List<int>();
+            item.CountryId = new List<int>();
             var items = new MySQLDbContext().GetItems();
             var categories = new MySQLDbContext().GetCategories();
 
@@ -80,7 +80,7 @@ namespace HomeWork
             //Ids_ContryOfDeliverys
             for (int i = 0; i < rnd.Next(1, 10); i++)
             {
-                item.Ids_CountryOfDeliverys.Add(rnd.Next(1, 10));
+                item.CountryId.Add(rnd.Next(1, 10));
             }
 
             //IsDeleted
@@ -101,7 +101,7 @@ namespace HomeWork
             {
                 using (var db = new MySQLDbContext())
                 {
-                    item.Id_Byer = 0;
+                    item.CustomerId = 0;
                     db.AddItem(item);
                     dataGridView1.DataSource = items;
                 }
@@ -112,7 +112,7 @@ namespace HomeWork
             {
                 using (var db = new MySQLDbContext())
                 {
-                    item.Id_Byer = rnd.Next(1, db.GetUsers().Count);
+                    item.CustomerId = rnd.Next(1, db.GetUsers().Count);
                     db.AddItem(item);
                     dataGridView1.DataSource = items;
                 }
@@ -124,7 +124,7 @@ namespace HomeWork
 
         private Category GetMainCategoryBySubCategory(Category category)
         {
-            var MainCategory = new MySQLDbContext().GetCategories().Find(e => e.Id == category.id_parentCategory);
+            var MainCategory = new MySQLDbContext().GetCategories().Find(e => e.Id == category.ParentId);
             if (MainCategory!.IsMain)
             {
                 return MainCategory;
@@ -183,7 +183,7 @@ namespace HomeWork
                 var item = items.First(e => e.Id.ToString() == dataGridView1.CurrentRow.Cells[0].Value.ToString());
 
                 using (var db = new MySQLDbContext())
-                    item.Id_Byer = rnd.Next(1, db.GetUsers().Count);
+                    item.CustomerId = rnd.Next(1, db.GetUsers().Count);
 
                 UpdateDataGridView(items);
             }

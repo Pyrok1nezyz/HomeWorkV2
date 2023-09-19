@@ -1,4 +1,6 @@
-﻿namespace HomeWork.Classes
+﻿using PetProject.Core.Entities;
+
+namespace PetProject.Core.Domain
 {
     public class TableFillerForItemClass : Item
     {
@@ -26,10 +28,10 @@
         public int Count => item.Count;
         public bool IsForceBuy => item.IsForceBuy;
 
-        public List<int>? Ids_CountryOfDeliverys => item.Ids_CountryOfDeliverys;
+        public List<int>? Ids_CountryOfDeliverys => item.CountryId;
         public bool IsDiscounted => item.IsDiscounted;
         public bool IsDeleted => item.IsDeleted;
         public bool IsHided => item.IsHided;
-        public int Id_Byer => item.Id_Byer;
+        public int Id_Byer => item.CustomerId;
     }
 }

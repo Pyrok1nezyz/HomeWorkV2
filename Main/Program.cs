@@ -1,7 +1,6 @@
+using PetProject.Forms.Forms;
 
-using HomeWork.Db;
-
-namespace HomeWork
+namespace PetProject.Forms
 {
     internal static class Program
     {
@@ -14,7 +13,6 @@ namespace HomeWork
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            new MySQLDbContext();
             //Application.Run(new AutorizationForm());
             Application.Run(new MarketForm());
         }

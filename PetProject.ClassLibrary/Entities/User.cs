@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HomeWork.Classes;
+namespace PetProject.Core.Entities;
 
 public class User
 {
