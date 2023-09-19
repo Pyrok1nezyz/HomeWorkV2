@@ -7,21 +7,15 @@ namespace HomeWork
 {
     public partial class MarketForm : Form
     {
-        List<Item> _items;
-        List<Category> _categories;
         Random rnd = new Random();
         public MarketForm()
         {
             InitializeComponent();
-            _items = new List<Item>();
-            _categories = new List<Category>();
         }
         private void MarketForm_Load(object sender, EventArgs e)
         {
-            _items = MySQLDbContext._items;
-            _categories = MySQLDbContext._categories;
-
-            UpdateDataGridView(_items);
+            var list = new MySQLDbContext().GetItems();
+            UpdateDataGridView(list);
         }
 
         private void UpdateDataGridView(List<Item> list)
@@ -44,21 +38,14 @@ namespace HomeWork
         private async void hqButton_Generator_Click(object sender, EventArgs e)
         {
             var item = new Item();
-            item.Id = 0;
-            item.Name = "";
-            item.MainCategory = new Category();
-            item.Price = 0;
-            item.Count = 0;
-            item.IsForceBuy = true;
             item.Ids_CountryOfDeliverys = new List<int>();
-            item.IsDiscounted = false;
-            item.IsHided = false;
-            item.Id_Byer = 0;
+            var items = new MySQLDbContext().GetItems();
+            var categories = new MySQLDbContext().GetCategories();
 
             //id
-            if (_items.Count == 0)
+            if (items.Count == 0)
                 item.Id = 1;
-            else if (_items.Count > 0) item.Id = _items.LastOrDefault()!.Id + 1;
+            else if (items.Count > 0) item.Id = items.LastOrDefault()!.Id + 1;
 
             //Name
             item.Name = await GetRandomName();
@@ -66,14 +53,14 @@ namespace HomeWork
             //SubCategory
             if (Convert.ToBoolean(rnd.Next(0, 2)))
             {
-                var list = _categories.Where(e => e.IsMain == false).ToList();
+                var list = new MySQLDbContext().GetCategories().Where(e => e.IsMain == false).ToList();
                 item.SubCategory = list[rnd.Next(1, list.Count)];
             }
 
             //Category
             if (item.SubCategory == null)
             {
-                item.MainCategory = _categories[rnd.Next(_categories.FirstOrDefault()!.Id, _categories.Count)];
+                item.MainCategory = categories[rnd.Next(categories.FirstOrDefault()!.Id, categories.Count)];
             }
             else
             {
@@ -116,7 +103,7 @@ namespace HomeWork
                 {
                     item.Id_Byer = 0;
                     db.AddItem(item);
-                    dataGridView1.DataSource = _items;
+                    dataGridView1.DataSource = items;
                 }
                 MarketForm_Load(sender, e);
                 return;
@@ -127,7 +114,7 @@ namespace HomeWork
                 {
                     item.Id_Byer = rnd.Next(1, db.GetUsers().Count);
                     db.AddItem(item);
-                    dataGridView1.DataSource = _items;
+                    dataGridView1.DataSource = items;
                 }
                 MarketForm_Load(sender, e);
                 return;
@@ -137,7 +124,7 @@ namespace HomeWork
 
         private Category GetMainCategoryBySubCategory(Category category)
         {
-            var MainCategory = _categories.Find(e => e.Id == category.id_parentCategory);
+            var MainCategory = new MySQLDbContext().GetCategories().Find(e => e.Id == category.id_parentCategory);
             if (MainCategory!.IsMain)
             {
                 return MainCategory;
@@ -192,92 +179,101 @@ namespace HomeWork
         {
             if (dataGridView1.CurrentRow != null)
             {
-                var item = _items.First(e => e.Id.ToString() == dataGridView1.CurrentRow.Cells[0].Value.ToString());
+                var items = new MySQLDbContext().GetItems();
+                var item = items.First(e => e.Id.ToString() == dataGridView1.CurrentRow.Cells[0].Value.ToString());
 
-                using (var db = new MySQLDbContext()) item.Id_Byer = rnd.Next(1, db.GetUsers().Count);
-                UpdateDataGridView(_items);
+                using (var db = new MySQLDbContext())
+                    item.Id_Byer = rnd.Next(1, db.GetUsers().Count);
+
+                UpdateDataGridView(items);
             }
         }
 
         private void hqButton_PC_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 1).ToList());
+            var list = GetSortedListOfItems(1);
             UpdateDataGridView(list);
         }
 
         private void hqButton_Phones_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 2).ToList());
+            var list = GetSortedListOfItems(2);
             UpdateDataGridView(list);
         }
 
         private void hqButton_TV_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 3).ToList());
+            var list = GetSortedListOfItems(3);
             UpdateDataGridView(list);
         }
 
         private void hqButton_Beatuy_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 4).ToList());
+            var list = GetSortedListOfItems(4);
             UpdateDataGridView(list);
         }
 
         private void hqButton_OfficeFurniture_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 5).ToList());
+            var list = GetSortedListOfItems(5);
             UpdateDataGridView(list);
         }
 
         private void hqButton_Accesories_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 6).ToList());
+            var list = GetSortedListOfItems(6);
             UpdateDataGridView(list);
         }
 
         private void hqButton_NetDevices_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 7).ToList());
+            var list = GetSortedListOfItems(7);
             UpdateDataGridView(list);
         }
 
         private void hqButton_Home_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 8).ToList());
+            var list = GetSortedListOfItems(8);
             UpdateDataGridView(list);
         }
 
         private void hqButton_CarAccesoryes_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 9).ToList());
+            var list = GetSortedListOfItems(9);
             UpdateDataGridView(list);
         }
 
         private void hqButton_GardenTools_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.MainCategory!.Id == 10).ToList());
+            var list = GetSortedListOfItems(10);
             UpdateDataGridView(list);
         }
 
         private void hqButton_Discount_Click(object sender, EventArgs e)
         {
-            var list = new List<Item>(MySQLDbContext._items.Where(e => e.IsDiscounted).ToList());
+            var list = new MySQLDbContext().GetItems().Where(e => e.IsDiscounted).ToList();
             UpdateDataGridView(list);
         }
 
         private void hqButton_AllItems_Click(object sender, EventArgs e)
         {
-            UpdateDataGridView(MySQLDbContext._items);
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            MarketForm_Load(sender, e);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             hqButton_AllItems_Click(sender, e);
+        }
+
+        private List<Item> GetSortedListOfItems(int mainCategory)
+        {
+            var list = new List<Item>();
+            using (var db = new MySQLDbContext())
+            {
+                list = db.GetItems().Where(e => e.MainCategory!.Id == mainCategory).ToList();
+            }
+
+            return list;
         }
     }
 }

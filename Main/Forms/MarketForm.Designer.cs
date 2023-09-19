@@ -219,7 +219,6 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(854, 414);
             dataGridView1.TabIndex = 16;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // hqButton_Buy
             // 

@@ -6,10 +6,8 @@ namespace HomeWork.Forms
 {
     public partial class AutorizationForm : Form
     {
-        private int _flagLabel1 = 0;
         int _indexLayout = 0;
-        Random rnd = new Random();
-
+        Random rnd = new();
 
         public AutorizationForm()
         {
@@ -98,11 +96,6 @@ namespace HomeWork.Forms
                 db.AddUser(user);
                 db.GetUsers();
             }
-        }
-
-        private void Авторизация_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void ChangeText_Click(object sender, EventArgs e)

@@ -54,42 +54,6 @@ namespace HomeWork.Forms
             groupBox1.Hide();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             using var db = new MySQLDbContext();
@@ -189,20 +153,6 @@ namespace HomeWork.Forms
         private void Редактор_FormClosed(object sender, FormClosedEventArgs e)
         {
             _tablesForm.EditorForm = null;
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
         }
     }
 }

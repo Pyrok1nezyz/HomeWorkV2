@@ -63,7 +63,6 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Юзеры";
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // groupBox2
             // 
@@ -80,7 +79,6 @@
             groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
             groupBox2.Text = "Компьютеры";
-            groupBox2.Enter += groupBox2_Enter;
             // 
             // button3
             // 
@@ -108,7 +106,6 @@
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(125, 27);
             textBox8.TabIndex = 9;
-            textBox8.TextChanged += textBox8_TextChanged;
             // 
             // textBox7
             // 
@@ -124,7 +121,6 @@
             textBox4.ReadOnly = true;
             textBox4.Size = new Size(125, 27);
             textBox4.TabIndex = 6;
-            textBox4.TextChanged += textBox4_TextChanged;
             // 
             // textBox5
             // 
@@ -132,7 +128,6 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(125, 27);
             textBox5.TabIndex = 5;
-            textBox5.TextChanged += textBox5_TextChanged;
             // 
             // textBox6
             // 
@@ -140,7 +135,6 @@
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(125, 27);
             textBox6.TabIndex = 4;
-            textBox6.TextChanged += textBox6_TextChanged;
             // 
             // checkBox1
             // 
@@ -159,7 +153,6 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(226, 28);
             comboBox1.TabIndex = 8;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // button1
             // 
@@ -187,7 +180,6 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(125, 27);
             textBox3.TabIndex = 2;
-            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // textBox2
             // 
@@ -195,7 +187,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 1;
-            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
@@ -204,7 +195,6 @@
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 0;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // EditorForm
             // 
@@ -218,7 +208,6 @@
             Name = "EditorForm";
             Text = "Редактирование Таблицы";
             FormClosed += Редактор_FormClosed;
-            Load += Form2_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

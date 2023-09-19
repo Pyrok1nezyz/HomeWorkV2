@@ -10,8 +10,22 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Classes\**" />
+	  <Compile Remove="Db\**" />
+	  <EmbeddedResource Remove="Classes\**" />
+	  <EmbeddedResource Remove="Db\**" />
+	  <None Remove="Classes\**" />
+	  <None Remove="Db\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="MySql.Data" Version="8.1.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\PetProject.ClassLibrary\PetProject.ClassLibrary.csproj" />
+	  <ProjectReference Include="..\PetProject.DBContext\PetProject.DBContext.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

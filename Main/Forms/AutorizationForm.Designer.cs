@@ -144,7 +144,6 @@
             MinimumSize = new Size(818, 495);
             Name = "AutorizationForm";
             Text = "Авторизация";
-            Load += Авторизация_Load;
             ResumeLayout(false);
             PerformLayout();
         }

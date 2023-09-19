@@ -21,7 +21,7 @@ namespace HomeWork.Forms
             {
                 comboBox1.Items.Add(variable.Name);
             }
-
+            
             UpdateStatsLabels();
         }
 
@@ -181,26 +181,8 @@ namespace HomeWork.Forms
                                 break;
                             }
                     }
-
-
-                    //ComputersDataGridView.DataSource = db.Computers.OrderBy(e => EF.Property<Computer>(e, query)).ToArray();
-                    //Компьютеры.DataSource = db.Computers.FromSqlRaw($"SELECT * FROM Computers ORDER BY {query}").ToArray();
-
-                    //db.Computers.OrderBy(e => EF.Property<Computer>(e, query));
                 }
-
-
             }
-
-            //ComputersDataGridView.Refresh();
-            //ComputersDataGridView.ResetBindings();
-            //UsersDataGrid.Refresh();
-            //UsersDataGrid.ResetBindings();
-        }
-
-        private void UsersDataGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void ComputersDataGridViewCellEnter(object sender, DataGridViewCellEventArgs e)
@@ -280,11 +262,6 @@ namespace HomeWork.Forms
 
                 statlabel_countOfRows_text.Text = rows.ToString();
             }
-        }
-
-        private void UsersDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
