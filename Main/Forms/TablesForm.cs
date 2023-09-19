@@ -21,7 +21,7 @@ namespace PetProject.Forms.Forms
             {
                 comboBox1.Items.Add(variable.Name);
             }
-            
+
             UpdateStatsLabels();
         }
 
@@ -119,28 +119,28 @@ namespace PetProject.Forms.Forms
                     switch (query)
                     {
                         default:
-                            {
-                                UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Id).ToList();
-                                break;
-                            }
+                        {
+                            UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Id).ToList();
+                            break;
+                        }
 
                         case "Name":
-                            {
-                                UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Name).ToList();
-                                break;
-                            }
+                        {
+                            UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Name).ToList();
+                            break;
+                        }
 
                         case "Password":
-                            {
-                                UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Password).ToList();
-                                break;
-                            }
+                        {
+                            UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Password).ToList();
+                            break;
+                        }
 
                         case "Computer":
-                            {
-                                UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Computer).ToList();
-                                break;
-                            }
+                        {
+                            UsersDataGrid.DataSource = db.GetUsers().OrderBy(e => e.Computer).ToList();
+                            break;
+                        }
                     }
 
                     //UsersDataGrid.DataSource = db.Users.FromSqlRaw($"SELECT * FROM Users ORDER BY {query}").ToArray();
@@ -152,34 +152,34 @@ namespace PetProject.Forms.Forms
                     switch (query)
                     {
                         default:
-                            {
-                                ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Id).ToList();
-                                break;
-                            }
+                        {
+                            ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Id).ToList();
+                            break;
+                        }
 
                         case "Name":
-                            {
-                                ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Name).ToList();
-                                break;
-                            }
+                        {
+                            ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Name).ToList();
+                            break;
+                        }
 
                         case "Ip":
-                            {
-                                ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Ip).ToList();
-                                break;
-                            }
+                        {
+                            ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Ip).ToList();
+                            break;
+                        }
 
                         case "Props":
-                            {
-                                ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Props).ToList();
-                                break;
-                            }
+                        {
+                            ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Props).ToList();
+                            break;
+                        }
 
                         case "Notation":
-                            {
-                                ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Notation).ToList();
-                                break;
-                            }
+                        {
+                            ComputersDataGridView.DataSource = db.GetComputers().OrderBy(e => e.Notation).ToList();
+                            break;
+                        }
                     }
                 }
             }
